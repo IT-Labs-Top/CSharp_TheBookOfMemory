@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="TheBookOfMemory.Views.Pages.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+             xmlns:pages="clr-namespace:TheBookOfMemory.ViewModels.Pages"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             d:DataContext="{d:DesignInstance pages:MainPageViewModel}"
+             x:Name="MainPage">
+    <Grid>
+        <StackPanel>
+            <Image Source="/Resources/Images/Logo.png"
+                   VerticalAlignment="Top" HorizontalAlignment="Center"
+                   Width="1082"
+                   Margin="0 40 0 0" />
+            <TextBlock Style="{StaticResource InterText}"
+                       Text="ПОМНИМ СВОИХ ГЕРОЕВ"
+                       FontSize="96"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TitleForegroundBrush}"
+                       HorizontalAlignment="Center"
+                       Margin="0 248 0 0"/>
+            <TextBlock Style="{StaticResource InterText}"
+                       Text="УЗНАЙТЕ, КЕМ ОНИ БЫЛИ"
+                       FontSize="48"
+                       Foreground="{StaticResource DescriptionForegroundBrush}"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       Margin="0 10 0 120"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <components:RoundedButton CornerRadius="10"
+                                          Padding="24"
+                                          Width="472"
+                                          Height="87"
+                                          Content="Режим для слабовидящих"
+                                          FontSize="32"
+                                          FontWeight="SemiBold"
+                                          Foreground="{StaticResource TitleForegroundBrush}"
+                                          Background="White"
+                                          HorizontalContentAlignment="Center"/>
+                <Button Margin="20 0 0 0"
+                        Command="{Binding EventPageNavigationCommand}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10"
+                                    Padding="24"
+                                    Width="480"
+                                    Height="88"
+                                    Background="{StaticResource TitleForegroundBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentPresenter ContentTemplate="{StaticResource TouchIcon}"/>
+                                    <TextBlock FontSize="32"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               FontFamily="{StaticResource Inter}"
+                                               Text="Нажмите, чтобы начать"
+                                               Margin="10 0 0 0"/>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <Image Source="/Resources/Images/Culture.png"
+               Width="253"
+               Height="104"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Left"
+               Margin="40"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="40">
+            <Image Source="/Resources/Images/Cul.png"
+               Width="113"
+               Height="171"/>
+            <Image Source="/Resources/Images/Win.png"
+                   Width="113"
+                   Height="171"
+                   Margin="20 0 0 0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

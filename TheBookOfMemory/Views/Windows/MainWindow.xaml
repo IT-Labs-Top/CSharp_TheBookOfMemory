@@ -1,0 +1,56 @@
+﻿<Window x:Class="TheBookOfMemory.Views.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+        xmlns:windows="clr-namespace:TheBookOfMemory.ViewModels.Windows"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="1080" Width="1920"
+        WindowState="Maximized"
+        WindowStyle="None"
+        d:DataContext="{d:DesignInstance windows:MainWindowViewModel}">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction
+                Command="{Binding LoadedCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="Closed">
+            <b:InvokeCommandAction
+                Command="{Binding ClosingCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Viewbox>
+        <Grid Height="1080" Width="1920">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/Images/Background.png"/>
+            </Grid.Background>
+            <ContentPresenter
+                                                   Content="{Binding CurrentViewModel}" />
+            <components:ModalControl
+                Panel.ZIndex="2"
+                Content="{Binding CurrentModalViewModel}"
+                IsOpen="{Binding IsModalOpen}" />
+            <Button
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Panel.ZIndex="3000">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="PreviewMouseDown">
+                        <b:InvokeCommandAction Command="{Binding StartTimerCommand}" />
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="PreviewMouseUp">
+                        <b:InvokeCommandAction Command="{Binding StopTimerCommand}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Width="120" Height="120" Background="Transparent" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Viewbox>
+</Window>
