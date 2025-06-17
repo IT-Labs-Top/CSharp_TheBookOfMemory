@@ -17,7 +17,7 @@ public partial class MainWindowViewModel : ObservableObject, IRecipient<ViewMode
     private int _sec;
     private readonly NavigationStore _navigationStore;
     private readonly ModalNavigationStore _modalNavigationStore;
-    private readonly InactivityManager<MainPageViewModel> _inactivityManager;
+    private readonly InactivityManager<InactivityPopupViewModel> _inactivityManager;
     private readonly NavigationService<PasswordPopupViewModel> _passwordNavigationService;
 
     public ObservableObject? CurrentViewModel => _navigationStore.CurrentViewModel;
@@ -28,7 +28,7 @@ public partial class MainWindowViewModel : ObservableObject, IRecipient<ViewMode
         IMessenger messenger,
         NavigationStore navigationStore,
         ModalNavigationStore modalNavigationStore,
-        InactivityManager<MainPageViewModel> inactivityManager,
+        InactivityManager<InactivityPopupViewModel> inactivityManager,
         NavigationService<PasswordPopupViewModel> passwordNavigationService)
     {
         _navigationStore = navigationStore;

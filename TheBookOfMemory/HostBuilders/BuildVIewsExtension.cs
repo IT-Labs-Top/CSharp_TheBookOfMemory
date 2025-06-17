@@ -9,6 +9,7 @@ using TheBookOfMemory.Models.Entities;
 using TheBookOfMemory.Models.Records;
 using TheBookOfMemory.ViewModels;
 using TheBookOfMemory.ViewModels.Pages;
+using TheBookOfMemory.ViewModels.Popups;
 using TheBookOfMemory.ViewModels.Windows;
 
 namespace TheBookOfMemory.HostBuilders
@@ -22,10 +23,11 @@ namespace TheBookOfMemory.HostBuilders
                 var inactivityConfig = context.Configuration.GetSection("Inactivity").Get<InactivityConfig>();
                 services.AddSingleton<IMessenger>(_ => new WeakReferenceMessenger());
 
-                services.AddSingleton<InactivityManager<MainPageViewModel>>(s => new InactivityManager<MainPageViewModel>(
+                services.AddSingleton<InactivityManager<InactivityPopupViewModel>>(s => new InactivityManager<InactivityPopupViewModel>(
                     inactivityConfig ?? new InactivityConfig(60, 10),
                     s.GetRequiredService<NavigationStore>(),
-                    s.GetRequiredService<NavigationService<MainPageViewModel>>(),
+                    s.GetRequiredService<ModalNavigationStore>(),
+                    s.GetRequiredService<NavigationService<InactivityPopupViewModel>>(),
                     s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>()));
                 services.AddSingleton<Settings>();
                 services.AddSingleton<Filter>();

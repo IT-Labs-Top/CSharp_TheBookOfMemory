@@ -37,8 +37,8 @@
                                               Background="White"
                                               CornerRadius="10"
                                               HorizontalAlignment="Left"
-                                              Margin="0 0 270 0"
-                                              Padding="20 12"
+                                              Margin="0 0 220 0"
+                                              Padding="40 12"
                                               Command="{Binding SwitchModeCommand}"
                                               CommandParameter="{x:Static enums:ModeType.SearchMode}"/>
 
@@ -47,7 +47,6 @@
                                               Background="{StaticResource TitleForegroundBrush}"
                                               Foreground="White"
                                               CornerRadius="10"
-                                              Padding="20 12"
                                               Command="{Binding FilterNavigationCommand}"/>
                 </Grid>
             </Grid>
@@ -57,7 +56,9 @@
                 Width="1840" Height="882"
                 VerticalAlignment="Bottom"
                 Margin="0 0 0 40">
-            <ScrollViewer>
+            <ScrollViewer Style="{StaticResource ContentSliderScrollViewer}"
+                          VerticalScrollBarVisibility="Auto"
+                          MaxHeight="842">
                 <ItemsControl ItemTemplate="{StaticResource PeopleTemplate}"
                               ItemsSource="{Binding Peoples}">
                     <ItemsControl.ItemsPanel>

@@ -1,11 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MainComponents.Popups;
 using MvvmNavigationLib.Services;
 using MvvmNavigationLib.Stores;
-using Serilog;
-using TheBookOfMemory.Models.Client;
 using TheBookOfMemory.Models.Entities;
 using TheBookOfMemory.Models.Messages;
 using TheBookOfMemory.Models.Records;
@@ -16,15 +15,15 @@ public partial class FilterPopupViewModel(
     CloseNavigationService<ModalNavigationStore> closePopupNavigationService,
     SliderValue sliderValue,
     Filter filter,
-    IMainApiClient client,
-    ILogger logger,
+    ObservableCollection<Rank> ranks,
+    ObservableCollection<Medal> medals,
     IMessenger messenger) : BasePopupViewModel(closePopupNavigationService)
 {
     [ObservableProperty] private Filter _filters = filter;
     [ObservableProperty] private SliderValue _sliderValue = sliderValue;
 
-    [ObservableProperty] private List<Rank> _ranks = [];
-    [ObservableProperty] private List<Medal> _medals = [];
+    [ObservableProperty] private ObservableCollection<Rank> _ranks = ranks;
+    [ObservableProperty] private ObservableCollection<Medal> _medals = medals;
 
     [RelayCommand]
     private void AcceptFilter()
@@ -34,23 +33,23 @@ public partial class FilterPopupViewModel(
     }
 
     [RelayCommand]
-    private void ClearFilters()
-    {
-        var type = Filters.Type;
-        Filters = new Filter{Type = type, SelectedMedal = null, SelectedRank = null,AgeAfter = DateTime.Now.Year, AgeBefore = 1900};
-    }
+    private void ClearFilters() => Filters.Clear(Ranks.FirstOrDefault(f => f.Id == -1),
+        Medals.FirstOrDefault(f => f.Id == -1), (int)SliderValue.Minimum, (int)SliderValue.Maximum);
 
     [RelayCommand]
-    private async Task Loaded()
+    private void Loaded()
     {
-        try
-        {
-            Ranks = await client.GetRank();
-            Medals = await client.GetMedal();
-        }
-        catch (Exception e)
-        {
-            logger.Error(e.Message);
-        }
+        Filters.SelectedMedal ??= Medals.FirstOrDefault(f => f.Id == -1)!;
+        Filters.SelectedRank ??= Ranks.FirstOrDefault(f => f.Id == -1)!;
+    }
+
+    partial void OnFiltersChanged(Filter value)
+    {
+        OnPropertyChanged(nameof(Filters));
+    }
+
+    partial void OnSliderValueChanged(SliderValue value)
+    {
+        OnPropertyChanged(nameof(SliderValue));
     }
 }

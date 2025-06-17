@@ -1,7 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 
 namespace TheBookOfMemory.Models.Records;
 
-public record Rank(
-    [JsonProperty("id")] int Id,
-    [JsonProperty("title")] string Title);
+public partial class Rank : ObservableObject
+{
+    [JsonProperty("id"), ObservableProperty] private int _id;
+    [JsonProperty("title"), ObservableProperty] private string _title;
+}
+    

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using MvvmNavigationLib.Stores;
 using Serilog;
 using TheBookOfMemory.Models.Client;
 using TheBookOfMemory.Models.Entities;
+using TheBookOfMemory.Models.Records;
 using TheBookOfMemory.ViewModels.Pages;
 using TheBookOfMemory.ViewModels.Popups;
 
@@ -21,16 +23,16 @@ namespace TheBookOfMemory.HostBuilders
             {
                 var time = context.Configuration.GetValue<int>("popupInactivityTime");
                 var sliderValue = context.Configuration.GetSection("sliderValue").Get<SliderValue>();
-
+                var filter = new Filter { AgeAfter = sliderValue.Maximum, AgeBefore = sliderValue.Minimum };
                 services.AddSingleton<ModalNavigationStore>();
                 services.AddUtilityNavigationServices<ModalNavigationStore>();
 
-                services.AddNavigationService<FilterPopupViewModel, ModalNavigationStore>(s =>
-                    new FilterPopupViewModel(s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>(),
-                        sliderValue ?? new SliderValue(0.0, 0.0), s.GetRequiredService<Filter>(),
-                        s.GetRequiredService<IMainApiClient>(),
-                        s.GetRequiredService<ILogger>(),
-                        s.GetRequiredService<IMessenger>()));
+                services
+                    .AddParameterNavigationService<FilterPopupViewModel, ModalNavigationStore, (
+                        ObservableCollection<Rank>, ObservableCollection<Medal>)>(s => param =>
+                        new FilterPopupViewModel(s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>(),
+                            sliderValue, filter,
+                            param.Item1, param.Item2, s.GetRequiredService<IMessenger>()));
 
                 services.AddNavigationService<PasswordPopupViewModel, ModalNavigationStore>(s =>
                     new PasswordPopupViewModel(
