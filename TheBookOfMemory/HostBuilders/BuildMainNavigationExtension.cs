@@ -38,7 +38,7 @@ public static class BuildMainNavigationExtension
                     s.GetRequiredService<IMainApiClient>(),
                     s.GetRequiredService<ILogger>(),
                     s.GetRequiredService<IMessenger>(),
-                    s.GetRequiredService<GoBackNavigationService<NavigationStore>>(),
+                    s.GetRequiredService<ParameterNavigationService<SelectHeroPageViewModel, string>>(),
                     s.GetRequiredService<NavigationService<MainPageViewModel>>()));
         });
 

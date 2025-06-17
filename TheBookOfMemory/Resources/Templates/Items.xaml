@@ -114,14 +114,15 @@
                     <Border Background="White"
                             CornerRadius="10"
                             Padding="20 20 20 20">
-                        <Grid Width="{TemplateBinding Width}"
+                        <StackPanel Width="{TemplateBinding Width}"
                               Height="{TemplateBinding Height}">
                             <components:AsyncImage Source="{Binding Image}"
                                                    VerticalAlignment="Top"
                                                    HorizontalAlignment="Center"
                                                    Stretch="UniformToFill"
                                                    Width="299"
-                                                   Height="399">
+                                                   Height="399"
+                                                   Margin="0 0 0 20">
                                 <components:AsyncImage.OpacityMask>
                                     <VisualBrush>
                                         <VisualBrush.Visual>
@@ -142,7 +143,7 @@
                                 <Run Text="{Binding Surname}"/>
                                 <Run Text="{Binding Patronymic}"/>
                             </TextBlock>
-                        </Grid>
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Button.Template>

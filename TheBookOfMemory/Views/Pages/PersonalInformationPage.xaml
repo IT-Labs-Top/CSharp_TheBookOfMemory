@@ -16,8 +16,7 @@
     </b:Interaction.Triggers>
 
     <StackPanel>
-        <Border Style="{StaticResource BorderStyle}"
-                Margin="40 35  40 20">
+        <Border Style="{StaticResource BorderStyle}">
             <StackPanel Orientation="Horizontal">
                 <components:RoundedButton Style="{StaticResource CommonButtonStyle}"
                                           Width="56" Height="56"

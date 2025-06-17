@@ -16,9 +16,10 @@ public partial class PersonalInformationViewModel(
     IMainApiClient client,
     ILogger logger,
     IMessenger messenger,
-    GoBackNavigationService<NavigationStore> goBackNavigationService,
+    ParameterNavigationService<SelectHeroPageViewModel, string> goBackNavigationService,
     NavigationService<MainPageViewModel> mainPageNavigationService) : ObservableObject
 {
+
     [ObservableProperty]
     private PeopleById _selectedPeople;
 
@@ -41,7 +42,7 @@ public partial class PersonalInformationViewModel(
 
     [RelayCommand]
     private async Task GoBack() =>
-        goBackNavigationService.Navigate();
+        goBackNavigationService.Navigate(tuple.people.Type);
 
     [RelayCommand]
     private async Task GoToNextHero(PeopleById currentPeople) {}
