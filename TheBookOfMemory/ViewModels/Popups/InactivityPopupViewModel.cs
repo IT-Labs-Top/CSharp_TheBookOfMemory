@@ -28,12 +28,12 @@ public partial class InactivityPopupViewModel(int time, NavigationService<MainPa
         _timer.Stop();
     }
 
-    private void _timer_Tick(object? sender, EventArgs e)
+    private async void _timer_Tick(object? sender, EventArgs e)
     {
         Time--;
-        if (time == 0)
-        {
-            mainPageNavigationService.Navigate();
-        }
+        if (Time > 0) return;
+        CloseContainerCommand.Execute(false);
+        await Task.Delay(100);
+        mainPageNavigationService.Navigate();
     }
 }

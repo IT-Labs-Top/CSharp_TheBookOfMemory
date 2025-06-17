@@ -7,8 +7,8 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{StaticResource Inter}" />
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="CornerRadius" Value="22"/>
+        <Setter Property="Background" Value="White" />
+        <Setter Property="CornerRadius" Value="22" />
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="CommonButtonStyle">
@@ -41,6 +41,20 @@
                     <Border Padding="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding DataContext.NoResultsFound, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        Value="True">
+                                        <Setter Property="BorderBrush" Value="Red" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <Grid>
                             <ContentPresenter ContentTemplate="{StaticResource SearchIcon}"
                                               Width="32"
@@ -48,7 +62,6 @@
                                               VerticalAlignment="Center" />
                             <TextBlock Style="{StaticResource InterText}"
                                        FontSize="18"
-                                       Width="162"
                                        TextAlignment="Justify"
                                        FontWeight="SemiBold"
                                        Text="ИСКАТЬ ГЕРОЯ"
@@ -65,6 +78,7 @@
                                      Foreground="{StaticResource DescriptionForegroundBrush}"
                                      FontSize="18"
                                      BorderBrush="Transparent"
+                                     Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
                                      FontFamily="{StaticResource Inter}"
                                      Visibility="{Binding DataContext.SelectedModeType,
                                 Converter={StaticResource EnumToVisibilityConverter},
@@ -114,26 +128,24 @@
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="FilterButtonStyle">
-        <Setter Property="MinWidth" Value="254" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components:RoundedButton">
-                    <Border Padding="{TemplateBinding Padding}"
+                    <Border Padding="40 12"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                             <Image Source="../Images/Filter.png"
                                    Width="32"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center" />
                             <TextBlock Style="{StaticResource InterText}"
                                        FontSize="18"
-                                       Width="162"
                                        Foreground="{TemplateBinding Foreground}"
                                        TextAlignment="Justify"
                                        FontWeight="SemiBold"
-                                       Text="ФИЛЬТР" 
+                                       Text="ФИЛЬТР"
                                        VerticalAlignment="Center"
-                                       Margin="16 0 0 0"/>
+                                       Margin="16 0 0 0" />
                         </StackPanel>
                     </Border>
                 </ControlTemplate>
@@ -142,11 +154,11 @@
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="BaseButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}">
-        <Setter Property="Width" Value="339"/>
-        <Setter Property="Height" Value="56"/>
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Padding" Value="17"/>
-        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+        <Setter Property="Width" Value="339" />
+        <Setter Property="Height" Value="56" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="17" />
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components:RoundedButton">
@@ -157,7 +169,7 @@
                                    Foreground="{TemplateBinding Foreground}"
                                    Text="{TemplateBinding Content}"
                                    VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -165,7 +177,7 @@
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="RedButtonStyle" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Background" Value="{StaticResource TitleForegroundBrush}"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource TitleForegroundBrush}" />
+        <Setter Property="Foreground" Value="White" />
     </Style>
 </ResourceDictionary>

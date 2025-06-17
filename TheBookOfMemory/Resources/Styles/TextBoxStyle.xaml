@@ -4,13 +4,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="10">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="BorderThickness" Value="2" />
+                            </Style>
+                        </Border.Style>
                         <ScrollViewer x:Name="PART_ContentHost"
-                                  VerticalAlignment="Center" 
-                                  HorizontalAlignment="Left"/>
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Margin="5 0 0 0"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

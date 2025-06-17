@@ -76,10 +76,11 @@
                                    Text="Год рождения" />
                         <controls:DoubleSliderControl Margin="0 8 0 0 "
                                                       Width="1002"
-                                                      Minimum="{Binding SliderValue.Minimum, Mode=TwoWay}"
-                                                      Maximum="{Binding SliderValue.Maximum, Mode=TwoWay}"
-                                                      LowerValue="{Binding Filters.AgeBefore, Mode=TwoWay}"
-                                                      UpperValue="{Binding Filters.AgeAfter, Mode=TwoWay}"
+                                                      Maximum="{Binding SliderValue.Maximum, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                      Minimum="{Binding SliderValue.Minimum, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                      UpperValue="{Binding Filters.AgeAfter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                      LowerValue="{Binding Filters.AgeBefore, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+
                                                       TickFrequency="1"
                                                       IsSnapToTickEnabled="True"
                                                       >
@@ -103,7 +104,7 @@
                                            FontWeight="Medium"
                                            FontFamily="{StaticResource Inter}">
                                     <Run Text="От" />
-                                    <Run Text="{Binding Filters.AgeBefore, Mode=TwoWay}" />
+                                    <Run Text="{Binding Filters.AgeBefore, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                                 </TextBlock>
 
                             </Grid>
@@ -124,7 +125,7 @@
                                            FontWeight="Medium"
                                            FontFamily="{StaticResource Inter}">
                                     <Run Text="От" />
-                                    <Run Text="{Binding Filters.AgeAfter, Mode=TwoWay}" />
+                                    <Run Text="{Binding Filters.AgeAfter,  UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                                 </TextBlock>
                             </Grid>
                         </Border>
@@ -141,9 +142,16 @@
                                               Width="491"
                                               Command="{Binding ClearFiltersCommand}"
                                               Height="62"
-                                              IsEnabled="{Binding Filters, Converter={StaticResource ModelToBoolConverter}}"
                                               HorizontalContentAlignment="Center"
                                               VerticalContentAlignment="Center">
+                        <components:RoundedButton.IsEnabled>
+                            <MultiBinding Converter="{StaticResource FilterPropertiesToBoolConverter}">
+                                <Binding Path="Filters.SelectedMedal" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                                <Binding Path="Filters.SelectedRank" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                                <Binding Path="Filters.AgeBefore" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                                <Binding Path="Filters.AgeAfter" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                            </MultiBinding>
+                        </components:RoundedButton.IsEnabled>
                         <components:RoundedButton.Style>
                             <Style BasedOn="{StaticResource {x:Type components:RoundedButton}}"
                                    TargetType="components:RoundedButton">

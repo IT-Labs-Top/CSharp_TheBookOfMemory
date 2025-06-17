@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="/Resources/Icons.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/TextStyles.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/ScrollViewerStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/BorderStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/ButtonStyles.xaml"/>

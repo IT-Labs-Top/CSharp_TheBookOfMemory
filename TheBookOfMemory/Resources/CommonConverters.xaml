@@ -3,6 +3,6 @@
                     xmlns:converters="clr-namespace:TheBookOfMemory.Converters">
     <converters:ImageConverter Width="400" Height="400" x:Key="ImageConverter"/>
     <converters:EnumToVisibility x:Key="EnumToVisibilityConverter"/>
-    <converters:ModelToBoolConverter x:Key="ModelToBoolConverter"/>
+    <converters:FilterPropertiesToBoolConverter x:Key="FilterPropertiesToBoolConverter"/>
     <converters:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
 </ResourceDictionary>

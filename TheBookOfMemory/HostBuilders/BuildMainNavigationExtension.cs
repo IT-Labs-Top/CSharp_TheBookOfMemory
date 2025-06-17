@@ -25,21 +25,26 @@ public static class BuildMainNavigationExtension
             services.AddNavigationService<MainPageViewModel, NavigationStore>();
             services.AddNavigationService<EventPageViewModel, NavigationStore>();
             services.AddParameterNavigationService<SelectHeroPageViewModel, NavigationStore, string>(s =>
-                param => new SelectHeroPageViewModel(param, 
+                param => new SelectHeroPageViewModel(param,
                     s.GetRequiredService<IMainApiClient>(),
                     s.GetRequiredService<Filter>(),
                     s.GetRequiredService<ILogger>(),
                     s.GetRequiredService<IMessenger>(),
-                    s.GetRequiredService<NavigationService<FilterPopupViewModel>>(),
-                    s.GetRequiredService<NavigationService<EventPageViewModel>>(),
-                    s.GetRequiredService<ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)>>()));
-            services.AddParameterNavigationService<PersonalInformationViewModel, NavigationStore, (People, ObservableCollection<People>)>(s =>
-                param => new PersonalInformationViewModel(param,
-                    s.GetRequiredService<IMainApiClient>(),
-                    s.GetRequiredService<ILogger>(),
-                    s.GetRequiredService<IMessenger>(),
-                    s.GetRequiredService<ParameterNavigationService<SelectHeroPageViewModel, string>>(),
-                    s.GetRequiredService<NavigationService<MainPageViewModel>>()));
+                    s.GetRequiredService<ParameterNavigationService<PersonalInformationViewModel, (People,
+                        ObservableCollection<People>)>>(),
+                    s.GetRequiredService<ParameterNavigationService<FilterPopupViewModel, (ObservableCollection<Rank>,
+                        ObservableCollection<Medal>)>>(),
+                    s.GetRequiredService<NavigationService<EventPageViewModel>>()
+                ));
+            services
+                .AddParameterNavigationService<PersonalInformationViewModel, NavigationStore, (People,
+                    ObservableCollection<People>)>(s =>
+                    param => new PersonalInformationViewModel(param,
+                        s.GetRequiredService<IMainApiClient>(),
+                        s.GetRequiredService<ILogger>(),
+                        s.GetRequiredService<IMessenger>(),
+                        s.GetRequiredService<ParameterNavigationService<SelectHeroPageViewModel, string>>(),
+                        s.GetRequiredService<NavigationService<MainPageViewModel>>()));
         });
 
         return builder;

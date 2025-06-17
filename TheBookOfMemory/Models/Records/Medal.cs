@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 
 namespace TheBookOfMemory.Models.Records;
 
-public record Medal(
-    [JsonProperty("id")] int Id,
-    [JsonProperty("title")] string Title);
+public partial class Medal : ObservableObject
+{
+    [JsonProperty("id"), ObservableProperty] private int _id;
+    [JsonProperty("title"), ObservableProperty] private string _title;
+}
