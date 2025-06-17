@@ -9,9 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\ArrowUp.png" />
     <None Remove="Resources\Images\Background.png" />
     <None Remove="Resources\Images\Cul.png" />
     <None Remove="Resources\Images\Culture.png" />
+    <None Remove="Resources\Images\Filter.png" />
     <None Remove="Resources\Images\Logo.png" />
     <None Remove="Resources\Images\Text.png" />
     <None Remove="Resources\Images\Win.png" />
@@ -48,13 +50,14 @@
 
   <ItemGroup>
     <Folder Include="Resources\Fonts\" />
-    <Folder Include="Views\Controls\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\ArrowUp.png" />
     <Resource Include="Resources\Images\Background.png" />
     <Resource Include="Resources\Images\Cul.png" />
     <Resource Include="Resources\Images\Culture.png" />
+    <Resource Include="Resources\Images\Filter.png" />
     <Resource Include="Resources\Images\Logo.png" />
     <Resource Include="Resources\Images\Text.png" />
     <Resource Include="Resources\Images\Win.png" />

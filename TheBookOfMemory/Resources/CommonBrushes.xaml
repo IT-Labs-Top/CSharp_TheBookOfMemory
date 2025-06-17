@@ -8,6 +8,8 @@
     <Color x:Key="AlmostWhite">#ECF5EF</Color>
     <Color x:Key="RedColor">#AA0000</Color>
     <Color x:Key="GrayColor">#2F2F2F</Color>
+    <Color x:Key="LightGrayColor">#D9D9D9</Color>
+    <Color x:Key="SoftGrayColor">#7C7C7C</Color>
 
     <SolidColorBrush x:Key="TextBrush" Color="{StaticResource BlackColor}"/>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource YellowColor}"/>
@@ -15,4 +17,6 @@
     <SolidColorBrush x:Key="ThirdBrush" Color="{StaticResource AlmostWhite}"/>
     <SolidColorBrush x:Key="TitleForegroundBrush" Color="{StaticResource RedColor}"/>
     <SolidColorBrush x:Key="DescriptionForegroundBrush" Color="{StaticResource GrayColor}"/>
+    <SolidColorBrush x:Key="LightGrayBrush" Color="{StaticResource LightGrayColor}"/>
+    <SolidColorBrush x:Key="FilterTextGrayBrush" Color="{StaticResource SoftGrayColor}"/>
 </ResourceDictionary>

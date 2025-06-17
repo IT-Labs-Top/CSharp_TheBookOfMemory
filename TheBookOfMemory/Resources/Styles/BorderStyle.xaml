@@ -14,4 +14,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="Border" x:Key="CommonBorderStyle">
+        <Setter Property="CornerRadius" Value="30" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="White" Opacity="0.5" />
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

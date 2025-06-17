@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <Duration x:Key="Duration">0:0:0.5</Duration>
+    <system:TimeSpan x:Key="BeginTime">0:0:0.5</system:TimeSpan>
+    <PowerEase x:Key="PowerEase"
+               Power="2"
+               EasingMode="EaseInOut" />
+</ResourceDictionary>

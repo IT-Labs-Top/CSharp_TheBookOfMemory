@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using MvvmNavigationLib.Services;
 using MvvmNavigationLib.Stores;
 using TheBookOfMemory.Models;
+using TheBookOfMemory.Models.Entities;
 using TheBookOfMemory.Models.Records;
 using TheBookOfMemory.ViewModels;
 using TheBookOfMemory.ViewModels.Pages;
@@ -27,6 +28,7 @@ namespace TheBookOfMemory.HostBuilders
                     s.GetRequiredService<NavigationService<MainPageViewModel>>(),
                     s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>()));
                 services.AddSingleton<Settings>();
+                services.AddSingleton<Filter>();
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton(s => new Views.Windows.MainWindow()
                 {

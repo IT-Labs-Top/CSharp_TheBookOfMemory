@@ -25,10 +25,10 @@
     <Viewbox>
         <Grid Height="1080" Width="1920">
             <Grid.Background>
-                <ImageBrush ImageSource="/Resources/Images/Background.png"/>
+                <ImageBrush ImageSource="/Resources/Images/Background.png" />
             </Grid.Background>
             <ContentPresenter
-                                                   Content="{Binding CurrentViewModel}" />
+                Content="{Binding CurrentViewModel}" />
             <components:ModalControl
                 Panel.ZIndex="2"
                 Content="{Binding CurrentModalViewModel}"

@@ -8,4 +8,7 @@
     <DataTemplate DataType="{x:Type pages:EventPageViewModel}">
         <pages1:EventPage DataContext="{Binding}"/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type pages:SelectHeroPageViewModel}">
+        <pages1:SelectHeroView DataContext="{Binding}"/>
+    </DataTemplate>
 </ResourceDictionary>

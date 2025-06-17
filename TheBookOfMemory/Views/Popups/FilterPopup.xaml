@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="TheBookOfMemory.Views.Popups.FilterPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TheBookOfMemory.Views.Popups"
+             xmlns:popups="clr-namespace:TheBookOfMemory.ViewModels.Popups"
+             xmlns:popupContainers="clr-namespace:MainComponents.Popups.PopupContainers;assembly=MainComponents"
+             xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:enums="clr-namespace:TheBookOfMemory.Models.Enums"
+             xmlns:controls="clr-namespace:TheBookOfMemory.Views.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             d:DataContext="{d:DesignInstance popups:FilterPopupViewModel}">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction
+                Command="{Binding LoadedCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <popupContainers:OpacityPopupContainer>
+        <Border Width="1042"
+                Height="394"
+                CornerRadius="30"
+                Background="White">
+            <StackPanel>
+                <Border CornerRadius="30 30 0 0"
+                        Background="{StaticResource LightGrayBrush}"
+                        Height="72"
+                        VerticalAlignment="Top"
+                        Padding="20">
+                    <Grid>
+                        <TextBlock Style="{StaticResource InterText}"
+                                   Foreground="{StaticResource TitleForegroundBrush}"
+                                   Text="Фильтры"
+                                   FontSize="32"
+                                   FontWeight="SemiBold" />
+                        <components:RoundedButton Style="{StaticResource CommonButtonStyle}"
+                                                  Content="{StaticResource CloseIcon}"
+                                                  Width="32"
+                                                  Background="Transparent"
+                                                  HorizontalAlignment="Right"
+                                                  Padding="0"
+                                                  Command="{Binding CloseContainerCommand}"
+                                                  CommandParameter="False" />
+                    </Grid>
+                </Border>
+                <Grid>
+                    <StackPanel Margin="20 20 20 10"
+                                Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource FilterText}"
+                                       Text="Звания" />
+                            <ComboBox HorizontalAlignment="Left"
+                                      Margin="0 8 0 0" 
+                                      ItemsSource="{Binding Ranks}"
+                                      SelectedItem="{Binding Filters.SelectedRank, Mode=TwoWay}"
+                                      DisplayMemberPath="Title"/>
+                        </StackPanel>
+                        <StackPanel Margin="12 0 0 0">
+                            <TextBlock Style="{StaticResource FilterText}"
+                                       Text="Награды" />
+                            <ComboBox HorizontalAlignment="Left"
+                                      Margin="0 8 0 0" 
+                                      ItemsSource="{Binding Medals}"
+                                      SelectedItem="{Binding Filters.SelectedMedal, Mode=TwoWay}"
+                                      DisplayMemberPath="Title"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Width="1002">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource FilterText}"
+                                   Text="Год рождения" />
+                        <controls:DoubleSliderControl Margin="0 8 0 0 "
+                                                      Width="1002"
+                                                      Minimum="{Binding SliderValue.Minimum, Mode=TwoWay}"
+                                                      Maximum="{Binding SliderValue.Maximum, Mode=TwoWay}"
+                                                      LowerValue="{Binding Filters.AgeBefore, Mode=TwoWay}"
+                                                      UpperValue="{Binding Filters.AgeAfter, Mode=TwoWay}"
+                                                      TickFrequency="1"
+                                                      IsSnapToTickEnabled="True"
+                                                      >
+
+                        </controls:DoubleSliderControl>
+                    </StackPanel>
+                </StackPanel>
+                <Grid>
+                    <Grid HorizontalAlignment="Left" Margin="20 16 0 10">
+
+                        <Border CornerRadius="10"
+                                BorderThickness="2"
+                                Width="160"
+                                Height="48"
+                                Padding="20 12"
+                                Background="White"
+                                BorderBrush="{StaticResource DescriptionForegroundBrush}">
+                            <Grid>
+                                <TextBlock Foreground="{StaticResource DescriptionForegroundBrush}"
+                                           FontSize="20"
+                                           FontWeight="Medium"
+                                           FontFamily="{StaticResource Inter}">
+                                    <Run Text="От" />
+                                    <Run Text="{Binding Filters.AgeBefore, Mode=TwoWay}" />
+                                </TextBlock>
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid HorizontalAlignment="Right" Margin="20 16 20 10">
+
+                        <Border CornerRadius="10"
+                                BorderThickness="2"
+                                Width="160"
+                                Height="48"
+                                Padding="20 12"
+                                Background="White"
+                                BorderBrush="{StaticResource DescriptionForegroundBrush}">
+                            <Grid>
+                                <TextBlock Foreground="{StaticResource DescriptionForegroundBrush}"
+                                           FontSize="20"
+                                           FontWeight="Medium"
+                                           FontFamily="{StaticResource Inter}">
+                                    <Run Text="От" />
+                                    <Run Text="{Binding Filters.AgeAfter, Mode=TwoWay}" />
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <components:RoundedButton Content="Очистить"
+                                              FontSize="18"
+                                              FontWeight="SemiBold"
+                                              FontFamily="{StaticResource Inter}"
+                                              Padding="20"
+                                              CornerRadius="10"
+                                              Width="491"
+                                              Command="{Binding ClearFiltersCommand}"
+                                              Height="62"
+                                              IsEnabled="{Binding Filters, Converter={StaticResource ModelToBoolConverter}}"
+                                              HorizontalContentAlignment="Center"
+                                              VerticalContentAlignment="Center">
+                        <components:RoundedButton.Style>
+                            <Style BasedOn="{StaticResource {x:Type components:RoundedButton}}"
+                                   TargetType="components:RoundedButton">
+                                <Setter Property="Background" Value="{StaticResource TitleForegroundBrush}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Opacity" Value="1" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Opacity" Value="0.2" />
+                                        <Setter Property="Background" Value="{StaticResource FilterTextGrayBrush}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </components:RoundedButton.Style>
+                    </components:RoundedButton>
+                    <components:RoundedButton Content="ПРИМЕНИТЬ ФИЛЬТРЫ"
+                                              Foreground="White"
+                                              FontSize="18"
+                                              Margin="20 0 0 0"
+                                              FontWeight="SemiBold"
+                                              FontFamily="{StaticResource Inter}"
+                                              Background="{StaticResource TitleForegroundBrush}"
+                                              Padding="20"
+                                              CornerRadius="10"
+                                              Width="491"
+                                              Height="62"
+                                              HorizontalContentAlignment="Center"
+                                              VerticalContentAlignment="Center"
+                                              Command="{Binding AcceptFilterCommand}"
+                                              CommandParameter="False" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </popupContainers:OpacityPopupContainer>
+</UserControl>

@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:TheBookOfMemory.Views.Popups"
              xmlns:popupContainers="clr-namespace:MainComponents.Popups.PopupContainers;assembly=MainComponents"
              xmlns:popups="clr-namespace:TheBookOfMemory.ViewModels.Popups"
+             xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance popups:InactivityPopupViewModel}">
     <popupContainers:OpacityPopupContainer>
         <Border Width="663"
-                Height="421"
                 CornerRadius="30"
                 Padding="20">
             <Border.Background>
@@ -19,7 +19,6 @@
             <StackPanel>
                 <Border
                     Width="623"
-                    Height="299"
                     Background="White"
                     CornerRadius="10"
                     Padding="20">
@@ -29,14 +28,34 @@
                                    FontSize="40"
                                    FontWeight="Bold"
                                    FontFamily="{StaticResource Inter}"
-                                   HorizontalAlignment="Center"/>
+                                   HorizontalAlignment="Center" />
                         <TextBlock Text="{Binding Time, UpdateSourceTrigger=PropertyChanged}"
                                    Foreground="{StaticResource TitleForegroundBrush}"
                                    FontSize="75"
                                    FontWeight="Bold"
-                                   Margin="0 24"/>
+                                   Margin="0 24" />
+                        <TextBlock Foreground="{StaticResource DescriptionForegroundBrush}"
+                                   Text="В связи с отсутствием активности - сеанс завершается.
+Вы можете нажать в любое место экрана, чтобы возобновить работу"
+                                   Width="523"
+                                   FontSize="20"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   FontWeight="Normal"
+                                   FontFamily="{StaticResource Inter}"
+                                   HorizontalAlignment="Center" />
                     </StackPanel>
                 </Border>
+                <components:RoundedButton Margin="0 20 0 0"
+                                          Content="Назад"
+                                          Padding="20"
+                                          HorizontalContentAlignment="Center"
+                                          Foreground="White"
+                                          CornerRadius="10"
+                                          FontWeight="SemiBold"
+                                          FontSize="18"
+                                          VerticalContentAlignment="Center"
+                                          Background="{StaticResource TitleForegroundBrush}" />
             </StackPanel>
         </Border>
     </popupContainers:OpacityPopupContainer>

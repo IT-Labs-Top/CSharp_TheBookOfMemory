@@ -1,0 +1,247 @@
+﻿<UserControl x:Class="TheBookOfMemory.Views.Controls.DoubleSliderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TheBookOfMemory.Views.Controls"
+             mc:Ignorable="d"
+             x:Name="root">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="FirstSliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
+            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                <StackPanel>
+                    <Ellipse Height="30"
+                             Width="30"
+                             Fill="{StaticResource TitleForegroundBrush}"/>
+                </StackPanel>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="FirstSliderHorizontal" TargetType="{x:Type Slider}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
+                    <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
+                    <Border x:Name="TrackBackground" Grid.Row="1" VerticalAlignment="center">
+                        <Canvas>
+                            <Rectangle x:Name="PART_SelectionRange" />
+                        </Canvas>
+                    </Border>
+                    <Track x:Name="PART_Track" Grid.Row="1">
+                        <Track.Thumb>
+                            <Thumb x:Name="Thumb" 
+                                   Tag="{Binding Value,RelativeSource={RelativeSource FindAncestor,AncestorType=Slider}}" 
+                                   Focusable="False" 
+                                   OverridesDefaultStyle="True" 
+                                   Template="{StaticResource FirstSliderThumbHorizontalDefault}" 
+                                   VerticalAlignment="Center" />
+                        </Track.Thumb>
+                    </Track>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="TickPlacement" Value="TopLeft">
+                    <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                    <Setter Property="Margin" TargetName="TrackBackground" Value="5,2,5,0"/>
+                </Trigger>
+                <Trigger Property="TickPlacement" Value="BottomRight">
+                    <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                    <Setter Property="Margin" TargetName="TrackBackground" Value="5,0,5,2"/>
+                </Trigger>
+                <Trigger Property="TickPlacement" Value="Both">
+                    <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                    <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                    <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="true">
+                    <Setter Property="Foreground" TargetName="Thumb" Value="Blue"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="FirstSliderStyle" TargetType="{x:Type Slider}">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FFE5E5E5"/>
+            <Setter Property="Template" Value="{StaticResource FirstSliderHorizontal}"/>
+        </Style>
+        <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="#FFE5E5E5"/>
+        <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
+            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                <StackPanel>
+                    <Ellipse Height="30"
+                             Width="30"
+                             Fill="{StaticResource TitleForegroundBrush}"/>
+                </StackPanel>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
+                    <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
+                    <Border x:Name="TrackBackground" Grid.Row="1" VerticalAlignment="center">
+                        <Canvas>
+                            <Rectangle x:Name="PART_SelectionRange" />
+                        </Canvas>
+                    </Border>
+                    <Track x:Name="PART_Track" Grid.Row="1">
+                        <Track.Thumb>
+                            <Thumb x:Name="Thumb" 
+                                   Tag="{Binding Value,RelativeSource={RelativeSource FindAncestor,AncestorType=Slider}}" 
+                                   Focusable="False" 
+                                   OverridesDefaultStyle="True" 
+                                   Template="{StaticResource SliderThumbHorizontalDefault}" 
+                                   VerticalAlignment="Center" />
+                        </Track.Thumb>
+                    </Track>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="TickPlacement" Value="TopLeft">
+                    <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                    <Setter Property="Margin" TargetName="TrackBackground" Value="5,2,5,0"/>
+                </Trigger>
+                <Trigger Property="TickPlacement" Value="BottomRight">
+                    <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                    <Setter Property="Margin" TargetName="TrackBackground" Value="5,0,5,2"/>
+                </Trigger>
+                <Trigger Property="TickPlacement" Value="Both">
+                    <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                    <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                    <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="true">
+                    <Setter Property="Foreground" TargetName="Thumb" Value="Blue"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="SecondSliderStyle" TargetType="{x:Type Slider}">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource SliderThumb.Static.Foreground}"/>
+            <Setter Property="Template" Value="{StaticResource SliderHorizontal}"/>
+        </Style>
+        <Style x:Key="ProgressBarStyle" TargetType="{x:Type ProgressBar}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="TemplateRoot">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Determinate"/>
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Animation" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <PointAnimationUsingKeyFrames Storyboard.TargetName="Animation" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)">
+                                                <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
+                                                <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5"/>
+                                                <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5"/>
+                                            </PointAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5"/>
+                            <Rectangle x:Name="PART_Track"/>
+                            <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
+                                <Border CornerRadius="5"
+                                        Name="Mask"
+                                        Background="White"/>
+                                <Grid>
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Mask}"/>
+                                    </Grid.OpacityMask>
+                                    <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
+                                    <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                                        <Rectangle.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Rectangle.RenderTransform>
+                                    </Rectangle>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsIndeterminate" Value="true">
+                                <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <ProgressBar Style="{DynamicResource ProgressBarStyle}" 
+                     Background="{StaticResource LightGrayBrush}"
+                     Foreground="{StaticResource FilterTextGrayBrush}"
+                     Minimum="{Binding ElementName=root, Path=Minimum}"
+                     Maximum="{Binding ElementName=root, Path=Maximum}"
+                     Value="{Binding ElementName=root, Path=UpperValue, Mode=TwoWay}"
+                     Height="8"
+                     Margin="10 0 -10 0"/>
+        <ProgressBar Style="{DynamicResource ProgressBarStyle}" 
+                     Background="Transparent"
+                     Foreground="{StaticResource LightGrayBrush}"
+                     Minimum="{Binding ElementName=root, Path=Minimum}"
+                     Maximum="{Binding ElementName=root, Path=Maximum}"
+                     Value="{Binding ElementName=root, Path=LowerValue, Mode=TwoWay}"
+                     Height="8"
+                     Margin="-9 0 9 0"/>
+        <Slider Style="{DynamicResource FirstSliderStyle}" x:Name="lowerSlider"
+                Tag="{Binding ElementName=root, Path=LowerValue}"
+                VerticalAlignment="Center"
+                Minimum="{Binding ElementName=root, Path=Minimum}"
+                Maximum="{Binding ElementName=root, Path=Maximum}"
+                Value="{Binding ElementName=root, Path=LowerValue, Mode=TwoWay}"
+                IsSnapToTickEnabled="{Binding ElementName=root, Path=IsSnapToTickEnabled}"
+                TickFrequency="{Binding ElementName=root, Path=TickFrequency}"
+                TickPlacement="{Binding ElementName=root, Path=TickPlacement}"
+                Ticks="{Binding ElementName=root, Path=Ticks}"
+                Margin="-10 0 10 0"/>
+        <Slider Style="{DynamicResource SecondSliderStyle}" x:Name="upperSlider"
+                Tag="{Binding ElementName=root, Path=UpperValue}"
+                VerticalAlignment="Center"
+                Minimum="{Binding ElementName=root, Path=Minimum}"
+                Maximum="{Binding ElementName=root, Path=Maximum}"
+                Value="{Binding ElementName=root, Path=UpperValue, Mode=TwoWay}"
+                IsSnapToTickEnabled="{Binding ElementName=root, Path=IsSnapToTickEnabled}"
+                TickFrequency="{Binding ElementName=root, Path=TickFrequency}"
+                TickPlacement="{Binding ElementName=root, Path=TickPlacement}"
+                Ticks="{Binding ElementName=root, Path=Ticks}"
+                Margin="10 0 -10 0"/>
+
+    </Grid>
+</UserControl>

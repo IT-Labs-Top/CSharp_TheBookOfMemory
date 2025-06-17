@@ -5,4 +5,10 @@
     <DataTemplate DataType="{x:Type popups:PasswordPopupViewModel}">
         <popups1:PasswordPopupView DataContext="{Binding}"/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type popups:InactivityPopupViewModel}">
+        <popups1:InactivityPopup DataContext="{Binding}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type popups:FilterPopupViewModel}">
+        <popups1:FilterPopup DataContext="{Binding}"/>
+    </DataTemplate>
 </ResourceDictionary>

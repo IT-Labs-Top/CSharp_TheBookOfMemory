@@ -21,4 +21,18 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
     </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="FilterText">
+        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource FilterTextGrayBrush}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="HeroText">
+        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+    </Style>
 </ResourceDictionary>

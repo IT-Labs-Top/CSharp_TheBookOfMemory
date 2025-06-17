@@ -1,26 +1,37 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvvmNavigationLib.Services;
 using MvvmNavigationLib.Services.ServiceCollectionExtensions;
 using MvvmNavigationLib.Stores;
-using TheBookOfMemory.ViewModels;
+using Serilog;
+using TheBookOfMemory.Models.Client;
+using TheBookOfMemory.Models.Entities;
 using TheBookOfMemory.ViewModels.Pages;
+using TheBookOfMemory.ViewModels.Popups;
 
-namespace TheBookOfMemory.HostBuilders
+namespace TheBookOfMemory.HostBuilders;
+
+public static class BuildMainNavigationExtension
 {
-    public static class BuildMainNavigationExtension
+    public static IHostBuilder BuildMainNavigation(this IHostBuilder builder)
     {
-        public static IHostBuilder BuildMainNavigation(this IHostBuilder builder)
+        builder.ConfigureServices((context, services) =>
         {
-            builder.ConfigureServices((context, services) =>
-            {
-                services.AddSingleton<NavigationStore>();
-                services.AddUtilityNavigationServices<NavigationStore>();
-                services.AddNavigationService<MainPageViewModel, NavigationStore>();
-                services.AddNavigationService<EventPageViewModel, NavigationStore>();
+            services.AddSingleton<NavigationStore>();
+            services.AddUtilityNavigationServices<NavigationStore>();
+            services.AddNavigationService<MainPageViewModel, NavigationStore>();
+            services.AddNavigationService<EventPageViewModel, NavigationStore>();
+            services.AddParameterNavigationService<SelectHeroPageViewModel, NavigationStore, string>(s =>
+                param => new SelectHeroPageViewModel(param, 
+                    s.GetRequiredService<IMainApiClient>(),
+                    s.GetRequiredService<Filter>(),
+                    s.GetRequiredService<ILogger>(),
+                    s.GetRequiredService<IMessenger>(),
+                    s.GetRequiredService<NavigationService<FilterPopupViewModel>>(),
+                    s.GetRequiredService<NavigationService<EventPageViewModel>>()));
+        });
 
-            });
-
-            return builder;
-        }
+        return builder;
     }
 }

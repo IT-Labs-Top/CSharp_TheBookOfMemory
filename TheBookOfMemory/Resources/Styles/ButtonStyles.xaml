@@ -1,43 +1,153 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents">
-    
+                    xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+                    xmlns:enums="clr-namespace:TheBookOfMemory.Models.Enums">
+
     <Style TargetType="components:RoundedButton" x:Key="DefaultButtonStyle">
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="CornerRadius" Value="22"/>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource Inter}" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="CornerRadius" Value="22" />
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect 
-                    Color="{StaticResource OrangeColor}" 
-                    ShadowDepth="8" 
+                <DropShadowEffect
+                    Color="{StaticResource OrangeColor}"
+                    ShadowDepth="8"
                     Opacity="0.46"
-                    BlurRadius="20"/>
+                    BlurRadius="20" />
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="components:RoundedButton" x:Key="CommonButtonStyle">
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource Inter}" />
+        <Setter Property="Background" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components:RoundedButton">
                     <Border Background="{TemplateBinding Background}"
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
                         <ContentPresenter ContentTemplate="{TemplateBinding Content}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Width="24"/>
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="components:RoundedButton" x:Key="SearchHeroButtonStyle">
+        <Setter Property="MinWidth" Value="254" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="components:RoundedButton">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid>
+                            <ContentPresenter ContentTemplate="{StaticResource SearchIcon}"
+                                              Width="32"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center" />
+                            <TextBlock Style="{StaticResource InterText}"
+                                       FontSize="18"
+                                       Width="162"
+                                       TextAlignment="Justify"
+                                       FontWeight="SemiBold"
+                                       Text="ИСКАТЬ ГЕРОЯ"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Visibility="{Binding DataContext.SelectedModeType,
+                                Converter={StaticResource EnumToVisibilityConverter},
+                                ConverterParameter={x:Static enums:ModeType.MainMode},
+                                RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <TextBox Style="{StaticResource SearchTextBox}"
+                                     FontWeight="SemiBold"
+                                     TextAlignment="Left"
+                                     Margin="40 0 40 0"
+                                     Foreground="{StaticResource DescriptionForegroundBrush}"
+                                     FontSize="18"
+                                     BorderBrush="Transparent"
+                                     FontFamily="{StaticResource Inter}"
+                                     Visibility="{Binding DataContext.SelectedModeType,
+                                Converter={StaticResource EnumToVisibilityConverter},
+                                ConverterParameter={x:Static enums:ModeType.SearchMode},
+                                RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <components:RoundedButton Content="{StaticResource CloseIcon}"
+                                                      Style="{StaticResource CommonButtonStyle}"
+                                                      Width="22" Height="22"
+                                                      HorizontalAlignment="Right"
+                                                      Command="{Binding SwitchModeCommand}"
+                                                      CommandParameter="{x:Static enums:ModeType.MainMode}"
+                                                      Visibility="{Binding DataContext.SelectedModeType,
+                                                   Converter={StaticResource EnumToVisibilityConverter},
+                                                   ConverterParameter={x:Static enums:ModeType.SearchMode},
+                                                   RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger
+                Binding="{Binding DataContext.SelectedModeType,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Value="{x:Static enums:ModeType.SearchMode}">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="MinWidth">
+                            <DoubleAnimation To="1100"
+                                             BeginTime="{StaticResource BeginTime}"
+                                             Duration="{StaticResource Duration}"
+                                             EasingFunction="{StaticResource PowerEase}" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="MinWidth">
+                            <DoubleAnimation To="254"
+                                             BeginTime="{StaticResource BeginTime}"
+                                             Duration="{StaticResource Duration}"
+                                             EasingFunction="{StaticResource PowerEase}" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="components:RoundedButton" x:Key="FilterButtonStyle">
+        <Setter Property="MinWidth" Value="254" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="components:RoundedButton">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Image Source="../Images/Filter.png"
+                                   Width="32"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock Style="{StaticResource InterText}"
+                                       FontSize="18"
+                                       Width="162"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       TextAlignment="Justify"
+                                       FontWeight="SemiBold"
+                                       Text="ФИЛЬТР" 
+                                       VerticalAlignment="Center"
+                                       Margin="16 0 0 0"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
