@@ -41,7 +41,9 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleTemplate" DataType="{x:Type records:People}">
-        <Button Margin="5">
+        <Button Margin="5"
+                Command="{Binding DataContext.GoToPersonalInformationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CommandParameter="{Binding}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Width="287"
@@ -97,6 +99,49 @@
                                 <TextBlock Text="{Binding Surname}"
                                        Style="{StaticResource HeroText}"/>
                             </StackPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PeopleByIdTemplate" DataType="{x:Type records:PeopleById}">
+        <Button Width="339"
+                Height="525">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="White"
+                            CornerRadius="10"
+                            Padding="20 20 20 20">
+                        <Grid Width="{TemplateBinding Width}"
+                              Height="{TemplateBinding Height}">
+                            <components:AsyncImage Source="{Binding Image}"
+                                                   VerticalAlignment="Top"
+                                                   HorizontalAlignment="Center"
+                                                   Stretch="UniformToFill"
+                                                   Width="299"
+                                                   Height="399">
+                                <components:AsyncImage.OpacityMask>
+                                    <VisualBrush>
+                                        <VisualBrush.Visual>
+                                            <Rectangle
+                                                Width="299"
+                                                Height="399"
+                                                RadiusX="10"
+                                                RadiusY="10"
+                                                Fill="White"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </components:AsyncImage.OpacityMask>
+                            </components:AsyncImage>
+                            <TextBlock Style="{StaticResource HeroText}"
+                                       FontSize="28"
+                                       VerticalAlignment="Bottom">
+                                <Run Text="{Binding Name}"/>
+                                <Run Text="{Binding Surname}"/>
+                                <Run Text="{Binding Patronymic}"/>
+                            </TextBlock>
                         </Grid>
                     </Border>
                 </ControlTemplate>

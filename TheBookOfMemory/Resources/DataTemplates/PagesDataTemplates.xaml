@@ -11,4 +11,7 @@
     <DataTemplate DataType="{x:Type pages:SelectHeroPageViewModel}">
         <pages1:SelectHeroView DataContext="{Binding}"/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type pages:PersonalInformationViewModel}">
+        <pages1:PersonalInformationPage DataContext="{Binding}"/>
+    </DataTemplate>
 </ResourceDictionary>

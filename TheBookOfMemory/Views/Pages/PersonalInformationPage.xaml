@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="TheBookOfMemory.Views.Pages.PersonalInformationPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+             xmlns:pages="clr-namespace:TheBookOfMemory.ViewModels.Pages"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             d:DataContext="{d:DesignInstance pages:PersonalInformationViewModel}">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+
+    <StackPanel>
+        <Border Style="{StaticResource BorderStyle}"
+                Margin="40 35  40 20">
+            <StackPanel Orientation="Horizontal">
+                <components:RoundedButton Style="{StaticResource CommonButtonStyle}"
+                                          Width="56" Height="56"
+                                          CornerRadius="10"
+                                          Padding="8"
+                                          Command="{Binding GoBackCommand}"
+                                          Content="{StaticResource LeftArrowIcon}"/>
+                <TextBlock Style="{StaticResource TitleText}"
+                           Text="Личная информация"
+                           Margin="20 0 0 0" />
+            </StackPanel>
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <Border Style="{StaticResource BorderStyle}"
+                    Width="379"
+                    Height="887"
+                    Margin="40 0 0 40">
+                <Grid>
+                    <ContentControl ContentTemplate="{StaticResource PeopleByIdTemplate}"
+                                    Content="{Binding SelectedPeople}"
+                                    VerticalAlignment="Top"/>
+                    <UniformGrid Columns="1"
+                                 Rows="2"
+                                 VerticalAlignment="Bottom">
+                        <components:RoundedButton Style="{StaticResource BaseButtonStyle}"
+                                                  Content="СЛЕДУЮЩИЙ ГЕРОЙ"
+                                                  Margin="0 0 0 5"
+                                                  Command="{Binding GoToNextHeroCommand}"
+                                                  CommandParameter="{Binding SelectedPeople}"/>
+                        <components:RoundedButton Style="{StaticResource RedButtonStyle}"
+                                                  Content="НА ГЛАВНУЮ"
+                                                  Command="{Binding GoToMainCommand}"/>
+                    </UniformGrid>
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}"
+                    Width="1441"
+                    Height="887"
+                    Margin="20 0 0 40">
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

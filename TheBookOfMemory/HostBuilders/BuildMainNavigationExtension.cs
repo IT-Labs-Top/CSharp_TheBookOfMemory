@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvvmNavigationLib.Services;
@@ -7,6 +8,7 @@ using MvvmNavigationLib.Stores;
 using Serilog;
 using TheBookOfMemory.Models.Client;
 using TheBookOfMemory.Models.Entities;
+using TheBookOfMemory.Models.Records;
 using TheBookOfMemory.ViewModels.Pages;
 using TheBookOfMemory.ViewModels.Popups;
 
@@ -29,7 +31,15 @@ public static class BuildMainNavigationExtension
                     s.GetRequiredService<ILogger>(),
                     s.GetRequiredService<IMessenger>(),
                     s.GetRequiredService<NavigationService<FilterPopupViewModel>>(),
-                    s.GetRequiredService<NavigationService<EventPageViewModel>>()));
+                    s.GetRequiredService<NavigationService<EventPageViewModel>>(),
+                    s.GetRequiredService<ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)>>()));
+            services.AddParameterNavigationService<PersonalInformationViewModel, NavigationStore, (People, ObservableCollection<People>)>(s =>
+                param => new PersonalInformationViewModel(param,
+                    s.GetRequiredService<IMainApiClient>(),
+                    s.GetRequiredService<ILogger>(),
+                    s.GetRequiredService<IMessenger>(),
+                    s.GetRequiredService<GoBackNavigationService<NavigationStore>>(),
+                    s.GetRequiredService<NavigationService<MainPageViewModel>>()));
         });
 
         return builder;

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MvvmNavigationLib.Services;
+using Newtonsoft.Json.Bson;
 using Serilog;
 using TheBookOfMemory.Models.Client;
 using TheBookOfMemory.Models.Entities;
@@ -21,7 +22,8 @@ public partial class SelectHeroPageViewModel(
     ILogger logger,
     IMessenger messenger,
     NavigationService<FilterPopupViewModel> filterPopupNavigationService,
-    NavigationService<EventPageViewModel> eventPageNavigationService) : ObservableObject, IRecipient<FilterMessage>
+    NavigationService<EventPageViewModel> eventPageNavigationService,
+    ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)> personalInformationNavigationService) : ObservableObject, IRecipient<FilterMessage>
 {
     [ObservableProperty] private ObservableCollection<People> _peoples = [];
     [ObservableProperty] private ModeType _selectedModeType = ModeType.MainMode;
@@ -68,4 +70,8 @@ public partial class SelectHeroPageViewModel(
             logger.Error(e.Message);
         }
     }
+
+    [RelayCommand]
+    private async Task GoToPersonalInformation(People people) => 
+        personalInformationNavigationService.Navigate((people, Peoples));
 }

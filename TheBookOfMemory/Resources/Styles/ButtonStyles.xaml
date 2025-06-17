@@ -7,17 +7,8 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{StaticResource Inter}" />
-        <Setter Property="Background" Value="White" />
-        <Setter Property="CornerRadius" Value="22" />
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect
-                    Color="{StaticResource OrangeColor}"
-                    ShadowDepth="8"
-                    Opacity="0.46"
-                    BlurRadius="20" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CornerRadius" Value="22"/>
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="CommonButtonStyle">
@@ -150,4 +141,31 @@
         </Setter>
     </Style>
 
+    <Style TargetType="components:RoundedButton" x:Key="BaseButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Width" Value="339"/>
+        <Setter Property="Height" Value="56"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="17"/>
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="components:RoundedButton">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <TextBlock Style="{StaticResource BaseButtonText}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{TemplateBinding Content}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="components:RoundedButton" x:Key="RedButtonStyle" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource TitleForegroundBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
 </ResourceDictionary>
