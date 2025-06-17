@@ -56,6 +56,24 @@
                     Width="1441"
                     Height="887"
                     Margin="20 0 0 40">
+                <TabControl>
+                    <TabItem Style="{StaticResource BaseTabItemStyle}"
+                             Header="Основная информация"
+                             Margin="0 0 40 0"
+                             Width="318">
+                        <TabItem.Content>
+                            <TextBlock Style="{StaticResource TitleText}"
+                                       Text="Личная информация"></TextBlock>
+                        </TabItem.Content>
+                    </TabItem>
+                    <TabItem Style="{StaticResource BaseTabItemStyle}"
+                             Header="Личная история">
+                        <TabItem.Content>
+                            <TextBlock Style="{StaticResource TitleText}"
+                                       Text="asdasdasd"></TextBlock>
+                        </TabItem.Content>
+                    </TabItem>
+                </TabControl>
             </Border>
         </StackPanel>
     </StackPanel>

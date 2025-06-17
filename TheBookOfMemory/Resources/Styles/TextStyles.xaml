@@ -41,4 +41,10 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
     </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="TabItemText">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+    </Style>
 </ResourceDictionary>

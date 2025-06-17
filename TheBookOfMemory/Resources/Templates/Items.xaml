@@ -114,8 +114,7 @@
                     <Border Background="White"
                             CornerRadius="10"
                             Padding="20 20 20 20">
-                        <StackPanel Width="{TemplateBinding Width}"
-                              Height="{TemplateBinding Height}">
+                        <StackPanel>
                             <components:AsyncImage Source="{Binding Image}"
                                                    VerticalAlignment="Top"
                                                    HorizontalAlignment="Center"
@@ -149,4 +148,22 @@
             </Button.Template>
         </Button>
     </DataTemplate>
+
+    <!--<DataTemplate x:Key="Information" DataType="{x:Type records:PeopleById}">
+        <ScrollViewer>
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type records:PeopleById}">
+                        <StackPanel Orientation="Vertical">
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DataTemplate>-->
 </ResourceDictionary>

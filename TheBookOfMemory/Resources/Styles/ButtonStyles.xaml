@@ -12,8 +12,8 @@
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="CommonButtonStyle">
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="{StaticResource Inter}" />
         <Setter Property="Background" Value="White" />
         <Setter Property="Template">

@@ -19,4 +19,5 @@
     <SolidColorBrush x:Key="DescriptionForegroundBrush" Color="{StaticResource GrayColor}"/>
     <SolidColorBrush x:Key="LightGrayBrush" Color="{StaticResource LightGrayColor}"/>
     <SolidColorBrush x:Key="FilterTextGrayBrush" Color="{StaticResource SoftGrayColor}"/>
+    <SolidColorBrush x:Key="TransparentWhiteBrush" Color="White" Opacity="0.5"/>
 </ResourceDictionary>

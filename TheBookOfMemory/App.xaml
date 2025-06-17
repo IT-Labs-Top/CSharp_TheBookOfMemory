@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="/Resources/Templates/Items.xaml"/>
                 <ResourceDictionary Source="/Resources/DataTemplates/PopupDataTemplates.xaml"/>
                 <ResourceDictionary Source="/Resources/DataTemplates/PagesDataTemplates.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/TabControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
