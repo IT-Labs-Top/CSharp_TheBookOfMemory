@@ -22,8 +22,10 @@ public partial class SelectHeroPageViewModel(
     Filter filter,
     ILogger logger,
     IMessenger messenger,
-    ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)> personalInformationNavigationService,
-    ParameterNavigationService<FilterPopupViewModel,(ObservableCollection<Rank>, ObservableCollection<Medal>)> filterPopupNavigationService,
+    ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)>
+        personalInformationNavigationService,
+    ParameterNavigationService<FilterPopupViewModel, (ObservableCollection<Rank>, ObservableCollection<Medal>)>
+        filterPopupNavigationService,
     NavigationService<EventPageViewModel> eventPageNavigationService) : ObservableObject, IRecipient<FilterMessage>
 {
     [ObservableProperty] private ObservableCollection<People> _peoples = [];
@@ -32,21 +34,38 @@ public partial class SelectHeroPageViewModel(
     [ObservableProperty] private ObservableCollection<Rank> _ranks = [];
     [ObservableProperty] private ObservableCollection<Medal> _medals = [];
     [ObservableProperty] private string _searchQuery = string.Empty;
+    [ObservableProperty] private bool _noResultsFound;
 
-    [RelayCommand] private void SwitchMode(ModeType mode)
+    [RelayCommand]
+    private void SwitchMode(ModeType mode)
     {
         SelectedModeType = mode;
         if (mode != ModeType.MainMode) return;
-        SearchQuery = string.Empty; 
+        SearchQuery = string.Empty;
     }
-    [RelayCommand] private void FilterNavigation() => filterPopupNavigationService.Navigate((Ranks,Medals));
-    [RelayCommand] private void EventPageNavigation() => eventPageNavigationService.Navigate();
+
+    [RelayCommand]
+    private void FilterNavigation() => filterPopupNavigationService.Navigate((Ranks, Medals));
+
+    [RelayCommand]
+    private void EventPageNavigation() => eventPageNavigationService.Navigate();
 
     [RelayCommand]
     private async Task Search()
     {
         if (SelectedModeType == ModeType.SearchMode && !string.IsNullOrWhiteSpace(SearchQuery))
         {
+            var filters = Filter;
+            if (filters.SelectedMedal is null || filters.SelectedMedal.Id == -1)
+            {
+                filters.SelectedMedal = null;
+            }
+
+            if (filters.SelectedRank is null || filters.SelectedRank.Id == -1)
+            {
+                filters.SelectedRank = null;
+            }
+
             await UpdatePeoplesAsync(Filter.Type, null, null, null, null, SearchQuery);
         }
         else
@@ -80,21 +99,29 @@ public partial class SelectHeroPageViewModel(
         {
             Medals.Add(medal);
         }
-
-        
     }
 
-    private async Task UpdatePeoplesAsync(string typePeople, int? rank, int? medal, int? ageBefore, int? ageAfter, string searchQuery = null)
+    private async Task UpdatePeoplesAsync(string typePeople, int? rank, int? medal, int? ageBefore, int? ageAfter,
+        string searchQuery = null)
     {
         var peoples = await GetPeoples(typePeople, rank, medal, ageBefore, ageAfter);
         Peoples.Clear();
 
-        var filteredPeoples = string.IsNullOrWhiteSpace(searchQuery)
-            ? peoples
-            : new ObservableCollection<People>(peoples.Where(p =>
-                p.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                p.Surname.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                p.Patronymic.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)));
+        var trimmedQuery = searchQuery?.Trim();
+        var filteredPeoples = peoples;
+
+        if (!string.IsNullOrWhiteSpace(trimmedQuery))
+        {
+            var searchTerms = trimmedQuery.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            filteredPeoples = new ObservableCollection<People>(peoples.Where(p =>
+                searchTerms.All(term =>
+                    (p.Name != null && p.Name.Contains(term, StringComparison.OrdinalIgnoreCase)) ||
+                    (p.Surname != null && p.Surname.Contains(term, StringComparison.OrdinalIgnoreCase)) ||
+                    (p.Patronymic != null && p.Patronymic.Contains(term, StringComparison.OrdinalIgnoreCase)))));
+        }
+
+        NoResultsFound = filteredPeoples.Count == 0 && !string.IsNullOrWhiteSpace(trimmedQuery);
 
         var updatedPeoples = await Task.WhenAll(filteredPeoples.Select(async person =>
             person with { Image = await client.LoadImageAndGetPath(logger, person.Image) }));
@@ -105,7 +132,8 @@ public partial class SelectHeroPageViewModel(
         }
     }
 
-    private async Task<ObservableCollection<People>> GetPeoples(string typePeople, int? rank, int? medal, int? ageBefore, int? ageAfter)
+    private async Task<ObservableCollection<People>> GetPeoples(string typePeople, int? rank, int? medal,
+        int? ageBefore, int? ageAfter)
     {
         return [.. await client.GetPeople(typePeople, rank, medal, ageBefore, ageAfter)];
     }
@@ -126,7 +154,8 @@ public partial class SelectHeroPageViewModel(
                 messageValue.SelectedRank = null;
             }
 
-            await UpdatePeoplesAsync(messageValue.Type, messageValue.SelectedRank?.Id, messageValue.SelectedMedal?.Id, (int?)messageValue.AgeBefore, (int?)messageValue.AgeAfter);
+            await UpdatePeoplesAsync(messageValue.Type, messageValue.SelectedRank?.Id, messageValue.SelectedMedal?.Id,
+                (int?)messageValue.AgeBefore, (int?)messageValue.AgeAfter);
         }
         catch (Exception e)
         {
@@ -140,6 +169,6 @@ public partial class SelectHeroPageViewModel(
     }
 
     [RelayCommand]
-    private async Task GoToPersonalInformation(People people) => 
+    private async Task GoToPersonalInformation(People people) =>
         personalInformationNavigationService.Navigate((people, Peoples));
 }
