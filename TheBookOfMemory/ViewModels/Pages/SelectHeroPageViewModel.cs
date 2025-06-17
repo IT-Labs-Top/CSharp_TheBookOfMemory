@@ -22,11 +22,9 @@ public partial class SelectHeroPageViewModel(
     Filter filter,
     ILogger logger,
     IMessenger messenger,
+    ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)> personalInformationNavigationService,
     ParameterNavigationService<FilterPopupViewModel,(ObservableCollection<Rank>, ObservableCollection<Medal>)> filterPopupNavigationService,
     NavigationService<EventPageViewModel> eventPageNavigationService) : ObservableObject, IRecipient<FilterMessage>
-    NavigationService<FilterPopupViewModel> filterPopupNavigationService,
-    NavigationService<EventPageViewModel> eventPageNavigationService,
-    ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)> personalInformationNavigationService) : ObservableObject, IRecipient<FilterMessage>
 {
     [ObservableProperty] private ObservableCollection<People> _peoples = [];
     [ObservableProperty] private ModeType _selectedModeType = ModeType.MainMode;
