@@ -115,13 +115,11 @@ public partial class CustomKeyboard : UserControl
     {
         List<List<char>> symbols =
         [
-            GetSymbols(ShiftIsPressed ? "йцукенгшщзх".ToUpper() : "йцукенгшщзх").ToList(),
+            GetSymbols(ShiftIsPressed ? "йцукенгшщзхъ".ToUpper() : "йцукенгшщзхъ").ToList(),
             GetSymbols(ShiftIsPressed ? "фывапролджэ".ToUpper() : "фывапролджэ").ToList(),
             GetSymbols(ShiftIsPressed ? "ячсмитьбю".ToUpper() : "ячсмитьбю").ToList()
         ];
-        KeyBaseWidth = ActualWidth / 11 - (ButtonBaseMargin.Left + ButtonBaseMargin.Right);
-        KeyBaseHeight = KeyBaseWidth;
-        this.Height = 4 * (KeyBaseHeight + ButtonBaseMargin.Top + ButtonBaseMargin.Bottom);
+       
         return symbols;
     }
     private List<List<char>> GetEngSymbols()
@@ -132,8 +130,7 @@ public partial class CustomKeyboard : UserControl
             GetSymbols(ShiftIsPressed ? "asdfghjkl".ToUpper() : "asdfghjkl").ToList(),
             GetSymbols(ShiftIsPressed ? "zxcvbnm".ToUpper() : "zxcvbnm").ToList()
         ];
-        KeyBaseWidth = ActualWidth / 10 - (ButtonBaseMargin.Left + ButtonBaseMargin.Right);
-        KeyBaseHeight = ActualWidth / 11 - (ButtonBaseMargin.Left + ButtonBaseMargin.Right);
+        
         return symbols;
     }
     private List<List<char>> GetNumberSymbols()
@@ -144,8 +141,7 @@ public partial class CustomKeyboard : UserControl
             GetSymbols("@#%_&-+()/").ToList(),
             GetSymbols("*\"':;!?").ToList()
         ];
-        KeyBaseWidth = ActualWidth / 10 - (ButtonBaseMargin.Left + ButtonBaseMargin.Right);
-        KeyBaseHeight = ActualWidth / 11 - (ButtonBaseMargin.Left + ButtonBaseMargin.Right);
+        
         return symbols;
     }
 

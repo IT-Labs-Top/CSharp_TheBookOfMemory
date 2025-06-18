@@ -10,14 +10,13 @@
         <Style TargetType="utilities:RoundedRepeatButton" x:Key="FirstStyle">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="Focusable" Value="False" />
-            <Setter Property="Padding" Value="12" />
-            <Setter Property="FontSize" Value="88" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="FontFamily" Value="{StaticResource Inter}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="#2F2F2F" />
             <Setter Property="Background" Value="#FFFFFF" />
             <Setter Property="BorderBrush" Value="#EDEDED" />
-            <Setter Property="BorderThickness" Value="6" />
+            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="CornerRadius" Value="14" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -46,7 +45,9 @@
             </Setter>
         </Style>
         <Style TargetType="utilities:RoundedRepeatButton" x:Key="SecondStyle" BasedOn="{StaticResource FirstStyle}">
-            <Setter Property="Background" Value="#EDEDED" />
+            <Setter Property="Background" Value="{StaticResource TitleForegroundBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="8"/>
             <Setter Property="BorderThickness" Value="0" />
         </Style>
         <Style TargetType="utilities:RoundedRepeatButton" x:Key="ThirdStyle" BasedOn="{StaticResource FirstStyle}">
@@ -104,18 +105,18 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="9*" />
+                        <ColumnDefinition Width="6*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <utilities:RoundedRepeatButton Grid.Row="2"
                                                    Click="ShiftPress"
                                                    Height="{Binding KeyBaseHeight,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                    Margin="{Binding ButtonBaseMargin,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
-                                                   Style="{StaticResource SecondStyle}">
+                                                   Style="{StaticResource SecondStyle}" 
+                                                   >
                         <utilities:RoundedRepeatButton.Content>
                             <Viewbox>
-                                <Grid Width="64"
-                                      Height="64">
+                                <Grid >
                                     <Path
                                         Data="M9.6725 33.3758C9.05076 34.0082 9.49875 35.0769 10.3856 35.0769L21.7143 35.0769L21.7143 54C21.7143 55.1046 22.6097 56 23.7143 56L40.2857 56C41.3903 56 42.2857 55.1046 42.2857 54L42.2857 35.0769L53.6144 35.0769C54.5013 35.0769 54.9492 34.0082 54.3275 33.3758L34.8523 13.5677C33.2849 11.9735 30.7151 11.9735 29.1477 13.5677L9.6725 33.3758Z"
                                         Stroke="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=utilities:RoundedRepeatButton}}"
@@ -144,8 +145,7 @@
                                                    Style="{StaticResource SecondStyle}">
                         <utilities:RoundedRepeatButton.Content>
                             <Viewbox>
-                                <Grid Width="64"
-                                      Height="64">
+                                <Grid>
                                     <Path
                                         Data="M29.4138 23.9204C28.6328 23.1394 27.3665 23.1394 26.5854 23.9204C25.8044 24.7015 25.8044 25.9678 26.5854 26.7489L31.8379 32.0013L26.5855 37.2538C25.8044 38.0348 25.8044 39.3011 26.5855 40.0822C27.3665 40.8632 28.6328 40.8632 29.4139 40.0822L34.6663 34.8298L39.9187 40.0821C40.6997 40.8632 41.9661 40.8632 42.7471 40.0821C43.5282 39.3011 43.5282 38.0348 42.7471 37.2537L37.4947 32.0013L42.7472 26.7489C43.5282 25.9679 43.5282 24.7015 42.7472 23.9205C41.9661 23.1394 40.6998 23.1394 39.9187 23.9205L34.6663 29.1729L29.4138 23.9204Z"
                                         Fill="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=utilities:RoundedRepeatButton}}" />
@@ -180,7 +180,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.5*" />
-                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1.5*" />
                     </Grid.ColumnDefinitions>
                     <utilities:RoundedRepeatButton Grid.Row="2"
@@ -190,8 +190,7 @@
                                                    Style="{StaticResource SecondStyle}">
                         <utilities:RoundedRepeatButton.Content>
                             <Viewbox>
-                                <Grid Width="64"
-                                      Height="64">
+                                <Grid >
                                     <Path
                                         Data="M9.6725 33.3758C9.05076 34.0082 9.49875 35.0769 10.3856 35.0769L21.7143 35.0769L21.7143 54C21.7143 55.1046 22.6097 56 23.7143 56L40.2857 56C41.3903 56 42.2857 55.1046 42.2857 54L42.2857 35.0769L53.6144 35.0769C54.5013 35.0769 54.9492 34.0082 54.3275 33.3758L34.8523 13.5677C33.2849 11.9735 30.7151 11.9735 29.1477 13.5677L9.6725 33.3758Z"
                                         Stroke="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=utilities:RoundedRepeatButton}}"
@@ -220,8 +219,7 @@
                                                    Style="{StaticResource SecondStyle}">
                         <utilities:RoundedRepeatButton.Content>
                             <Viewbox>
-                                <Grid Width="64"
-                                      Height="64">
+                                <Grid>
                                     <Path
                                         Data="M29.4138 23.9204C28.6328 23.1394 27.3665 23.1394 26.5854 23.9204C25.8044 24.7015 25.8044 25.9678 26.5854 26.7489L31.8379 32.0013L26.5855 37.2538C25.8044 38.0348 25.8044 39.3011 26.5855 40.0822C27.3665 40.8632 28.6328 40.8632 29.4139 40.0822L34.6663 34.8298L39.9187 40.0821C40.6997 40.8632 41.9661 40.8632 42.7471 40.0821C43.5282 39.3011 43.5282 38.0348 42.7471 37.2537L37.4947 32.0013L42.7472 26.7489C43.5282 25.9679 43.5282 24.7015 42.7472 23.9205C41.9661 23.1394 40.6998 23.1394 39.9187 23.9205L34.6663 29.1729L29.4138 23.9204Z"
                                         Fill="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=utilities:RoundedRepeatButton}}" />
@@ -241,26 +239,26 @@
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="6*" />
+                        <ColumnDefinition Width="9*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <utilities:RoundedRepeatButton Click="NumberPress"
                                                    Text="?!123"
-                                                   FontSize="64"
+                                                   Foreground="White"
+                                                   Background="{StaticResource TitleForegroundBrush}"
                                                    Margin="{Binding ButtonBaseMargin,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                    Height="{Binding KeyBaseHeight,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                    Style="{StaticResource ThirdStyle}" />
                   
                     <utilities:RoundedRepeatButton Click="ChangeLanguage"
                                                     Grid.Column="1"
-                                                    Padding="24"
+                                                    Padding="8"
                                                     Margin="{Binding ButtonBaseMargin,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                     Height="{Binding KeyBaseHeight,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                     Style="{StaticResource FirstStyle}">
                         <utilities:RoundedRepeatButton.Content>
                             <Viewbox>
-                                <Grid Width="59"
-                                      Height="59">
+                                <Grid>
                                     <Path Data="M29.4705 0C13.1865 0 0 13.216 0 29.5C0 45.784 13.1865 59 29.4705 59C45.784 59 59 45.784 59 29.5C59 13.216 45.784 0 29.4705 0ZM49.914 17.7H41.2115C40.2675 14.0125 38.9105 10.4725 37.1405 7.198C42.5685 9.0565 47.082 12.8325 49.914 17.7ZM29.5 6.018C31.9485 9.558 33.866 13.4815 35.1345 17.7H23.8655C25.134 13.4815 27.0515 9.558 29.5 6.018ZM6.667 35.4C6.195 33.512 5.9 31.5355 5.9 29.5C5.9 27.4645 6.195 25.488 6.667 23.6H16.638C16.402 25.547 16.225 27.494 16.225 29.5C16.225 31.506 16.402 33.453 16.638 35.4H6.667ZM9.086 41.3H17.7885C18.7325 44.9875 20.0895 48.5275 21.8595 51.802C16.4315 49.9435 11.918 46.197 9.086 41.3ZM17.7885 17.7H9.086C11.918 12.803 16.4315 9.0565 21.8595 7.198C20.0895 10.4725 18.7325 14.0125 17.7885 17.7ZM29.5 52.982C27.0515 49.442 25.134 45.5185 23.8655 41.3H35.1345C33.866 45.5185 31.9485 49.442 29.5 52.982ZM36.403 35.4H22.597C22.3315 33.453 22.125 31.506 22.125 29.5C22.125 27.494 22.3315 25.5175 22.597 23.6H36.403C36.6685 25.5175 36.875 27.494 36.875 29.5C36.875 31.506 36.6685 33.453 36.403 35.4ZM37.1405 51.802C38.9105 48.5275 40.2675 44.9875 41.2115 41.3H49.914C47.082 46.1675 42.5685 49.9435 37.1405 51.802ZM42.362 35.4C42.598 33.453 42.775 31.506 42.775 29.5C42.775 27.494 42.598 25.547 42.362 23.6H52.333C52.805 25.488 53.1 27.4645 53.1 29.5C53.1 31.5355 52.805 33.512 52.333 35.4H42.362Z" 
                                           Fill="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=utilities:RoundedRepeatButton}}"/>
                                 </Grid>
@@ -276,7 +274,7 @@
                     <utilities:RoundedRepeatButton Click="KeyPressed"
                                                    Grid.Column="3"
                                                    Text="Пробел"
-                                                   FontSize="64"
+                                                   FontSize="18"
                                                    Margin="{Binding ButtonBaseMargin,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                    Height="{Binding KeyBaseHeight,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}"
                                                    Style="{StaticResource FirstStyle}" />
