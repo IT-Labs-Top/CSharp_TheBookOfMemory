@@ -5,4 +5,5 @@
     <converters:EnumToVisibility x:Key="EnumToVisibilityConverter"/>
     <converters:FilterPropertiesToBoolConverter x:Key="FilterPropertiesToBoolConverter"/>
     <converters:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 </ResourceDictionary>

@@ -35,6 +35,9 @@ public partial class SelectHeroPageViewModel(
     [ObservableProperty] private ObservableCollection<Medal> _medals = [];
     [ObservableProperty] private string _searchQuery = string.Empty;
     [ObservableProperty] private bool _noResultsFound;
+    [ObservableProperty] private bool _isVisibleKeyboard = true;
+
+    [RelayCommand] private void SwitchKeyboardVisible() => IsVisibleKeyboard = !IsVisibleKeyboard;
 
     [RelayCommand]
     private async Task SwitchMode(ModeType mode)
@@ -43,6 +46,7 @@ public partial class SelectHeroPageViewModel(
         {
             SelectedModeType = mode;
             if (mode != ModeType.MainMode) return;
+            IsVisibleKeyboard = true;
             SearchQuery = string.Empty;
             await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null),
                 GetFilter(null, Filter.SelectedMedal),
@@ -63,9 +67,17 @@ public partial class SelectHeroPageViewModel(
     [RelayCommand]
     private async Task Search()
     {
-        if (SelectedModeType != ModeType.SearchMode) return;
-        await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null), GetFilter(null, Filter.SelectedMedal),
-            (int?)Filter.AgeBefore, (int?)Filter.AgeAfter, SearchQuery);
+        try
+        {
+            if (SelectedModeType != ModeType.SearchMode) return;
+            await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null),
+                GetFilter(null, Filter.SelectedMedal),
+                (int?)Filter.AgeBefore, (int?)Filter.AgeAfter, SearchQuery);
+        }
+        catch (Exception e)
+        {
+            logger.Error(e.Message);
+        }
     }
 
     [RelayCommand]
@@ -128,31 +140,38 @@ public partial class SelectHeroPageViewModel(
     private async Task UpdatePeoplesAsync(string typePeople, int? rank, int? medal, int? ageBefore, int? ageAfter,
         string searchQuery = null)
     {
-        var peoples = await GetPeoples(typePeople, rank, medal, ageBefore, ageAfter);
-        Peoples.Clear();
-
-        var trimmedQuery = searchQuery?.Trim();
-        var filteredPeoples = peoples;
-
-        if (!string.IsNullOrWhiteSpace(trimmedQuery))
+        try
         {
-            var searchTerms = trimmedQuery.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var peoples = await GetPeoples(typePeople, rank, medal, ageBefore, ageAfter);
+            Peoples.Clear();
 
-            filteredPeoples = new ObservableCollection<People>(peoples.Where(p =>
-                searchTerms.All(term =>
-                    (p.Name != null && p.Name.Contains(term, StringComparison.OrdinalIgnoreCase)) ||
-                    (p.Surname != null && p.Surname.Contains(term, StringComparison.OrdinalIgnoreCase)) ||
-                    (p.Patronymic != null && p.Patronymic.Contains(term, StringComparison.OrdinalIgnoreCase)))));
+            var trimmedQuery = searchQuery?.Trim();
+            var filteredPeoples = peoples;
+
+            if (!string.IsNullOrWhiteSpace(trimmedQuery))
+            {
+                var searchTerms = trimmedQuery.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                filteredPeoples = new ObservableCollection<People>(peoples.Where(p =>
+                    searchTerms.All(term =>
+                        (p.Name != null && p.Name.Contains(term, StringComparison.OrdinalIgnoreCase)) ||
+                        (p.Surname != null && p.Surname.Contains(term, StringComparison.OrdinalIgnoreCase)) ||
+                        (p.Patronymic != null && p.Patronymic.Contains(term, StringComparison.OrdinalIgnoreCase)))));
+            }
+
+            NoResultsFound = filteredPeoples.Count == 0 && !string.IsNullOrWhiteSpace(trimmedQuery);
+
+            var updatedPeoples = await Task.WhenAll(filteredPeoples.Select(async person =>
+                person with { Image = await client.LoadImageAndGetPath(logger, person.Image) }));
+
+            foreach (var person in updatedPeoples)
+            {
+                Peoples.Add(person);
+            }
         }
-
-        NoResultsFound = filteredPeoples.Count == 0 && !string.IsNullOrWhiteSpace(trimmedQuery);
-
-        var updatedPeoples = await Task.WhenAll(filteredPeoples.Select(async person =>
-            person with { Image = await client.LoadImageAndGetPath(logger, person.Image) }));
-
-        foreach (var person in updatedPeoples)
+        catch (Exception e)
         {
-            Peoples.Add(person);
+            logger.Error(e.Message);
         }
     }
 
