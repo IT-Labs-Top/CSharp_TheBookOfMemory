@@ -48,7 +48,9 @@ public static class BuildMainNavigationExtension
                         s.GetRequiredService<ILogger>(),
                         s.GetRequiredService<IMessenger>(),
                         s.GetRequiredService<ParameterNavigationService<SelectHeroPageViewModel, string>>(),
-                        s.GetRequiredService<NavigationService<MainPageViewModel>>()));
+                        s.GetRequiredService<NavigationService<MainPageViewModel>>(),
+                        s.GetRequiredService<ParameterNavigationService<HistoryPopupViewModel, PeopleMedia>>(),
+                        s.GetRequiredService<Settings>()));
         });
 
         return builder;

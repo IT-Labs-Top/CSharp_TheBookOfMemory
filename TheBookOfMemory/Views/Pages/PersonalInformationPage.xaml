@@ -73,7 +73,7 @@
                              Margin="20 0 -20 0">
                         <TabItem.Content>
                             <ScrollViewer Style="{StaticResource ContentSliderScrollViewer}"
-                                          VerticalScrollBarVisibility="Visible"
+                                          VerticalScrollBarVisibility="Auto"
                                           MaxHeight="845">
                                 <ItemsControl ItemTemplate="{StaticResource PeopleHistoryCardTemplate}"
                                               ItemsSource="{Binding SelectedPeople.PeopleMedia}">

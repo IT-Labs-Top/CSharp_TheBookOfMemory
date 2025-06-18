@@ -11,4 +11,7 @@
     <DataTemplate DataType="{x:Type popups:FilterPopupViewModel}">
         <popups1:FilterPopup DataContext="{Binding}"/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type popups:HistoryPopupViewModel}">
+        <popups1:HistoryPopup DataContext="{Binding}"/>
+    </DataTemplate>
 </ResourceDictionary>

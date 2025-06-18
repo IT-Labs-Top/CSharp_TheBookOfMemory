@@ -42,6 +42,10 @@ namespace TheBookOfMemory.HostBuilders
                     new InactivityPopupViewModel(time,
                         s.GetRequiredService<NavigationService<MainPageViewModel>>(),
                         s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>()));
+
+                services.AddParameterNavigationService<HistoryPopupViewModel, ModalNavigationStore, PeopleMedia>(s => param =>
+                    new HistoryPopupViewModel(param, 
+                        s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>()));
             });
 
             return builder;

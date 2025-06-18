@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="TheBookOfMemory.Views.Popups.HistoryPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TheBookOfMemory.Views.Popups"
+             xmlns:popupContainers="clr-namespace:MainComponents.Popups.PopupContainers;assembly=MainComponents"
+             xmlns:popups="clr-namespace:TheBookOfMemory.ViewModels.Popups"
+             xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             d:DataContext="{d:DesignInstance popups:HistoryPopupViewModel}">
+    <popupContainers:OpacityPopupContainer>
+        <StackPanel VerticalAlignment="Center">
+            <Border Width="1044"
+                Height="849"
+                CornerRadius="30"
+                Padding="20">
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.5" />
+                </Border.Background>
+                <StackPanel Orientation="Vertical">
+                    <Border CornerRadius="10"
+                        Width="1004"
+                        Height="565"
+                        Margin="0 0 0 32">
+                        <components:AsyncImage Source="{Binding Media.Media}"
+                                           Stretch="UniformToFill" />
+                    </Border>
+                    <Border Background="White"
+                        CornerRadius="10"
+                        Padding="20"
+                        Width="1004"
+                        Height="212">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="{Binding Media.Title}"
+                                   Margin="0 0 0 12" />
+                            <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding Media.Description}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <components:RoundedButton
+                Width="88"
+                Command="{Binding CloseContainerCommand}"
+                CommandParameter="False"
+                Height="56" Margin="0 20 0 0"
+                Padding="32 16"
+                CornerRadius="24"
+                Content="{StaticResource CloseIcon}"
+                Style="{StaticResource CommonButtonStyle}">
+            </components:RoundedButton>
+        </StackPanel>
+    </popupContainers:OpacityPopupContainer>
+</UserControl>

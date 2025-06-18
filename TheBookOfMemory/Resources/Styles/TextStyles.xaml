@@ -47,6 +47,13 @@
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}" />
+        <Style.Triggers>
+            <DataTrigger
+                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Value="True">
+                <Setter Property="FontSize" Value="24" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="TabItemText">

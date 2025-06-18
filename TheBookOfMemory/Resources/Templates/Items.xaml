@@ -169,7 +169,9 @@
 
     <DataTemplate x:Key="PeopleHistoryCardTemplate" DataType="{x:Type records:PeopleMedia}">
         <Button Height="104"
-                MinWidth="1373">
+                MinWidth="1373"
+                Command="{Binding DataContext.ShowPopupCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CommandParameter="{Binding}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="White"

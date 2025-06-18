@@ -4,10 +4,10 @@ using CommunityToolkit.Mvvm.Messaging;
 using MvvmNavigationLib.Services;
 using Serilog;
 using System.Collections.ObjectModel;
-using MvvmNavigationLib.Stores;
 using TheBookOfMemory.Models.Client;
 using TheBookOfMemory.Models.Records;
 using TheBookOfMemory.Utilities;
+using TheBookOfMemory.ViewModels.Popups;
 
 namespace TheBookOfMemory.ViewModels.Pages;
 
@@ -17,12 +17,16 @@ public partial class PersonalInformationViewModel(
     ILogger logger,
     IMessenger messenger,
     ParameterNavigationService<SelectHeroPageViewModel, string> goBackNavigationService,
-    NavigationService<MainPageViewModel> mainPageNavigationService) : ObservableObject
+    NavigationService<MainPageViewModel> mainPageNavigationService,
+    ParameterNavigationService<HistoryPopupViewModel, PeopleMedia> historyPopupNavigationService,
+    Settings settings) : ObservableObject
 {
-
-    [ObservableProperty]
+    [ObservableProperty] 
     private PeopleById _selectedPeople;
+    [ObservableProperty] 
+    private Settings _settings = settings;
 
+    private People _currentPeople = tuple.people;
     private ObservableCollection<People> _peoples = tuple.peoples;
 
     [RelayCommand]
@@ -33,9 +37,6 @@ public partial class PersonalInformationViewModel(
         var peopleById = await GetPeopleByIdFromPeople(tuple.people);
         SelectedPeople = await ProcessingPeople(peopleById);
     }
-
-    private async Task<PeopleById> GetPeopleByIdFromPeople(People people) =>
-        await client.GetPeopleById(people.Id);
 
     private async Task<PeopleById> ProcessingPeople(PeopleById peopleById)
     {
@@ -54,9 +55,23 @@ public partial class PersonalInformationViewModel(
         goBackNavigationService.Navigate(tuple.people.Type);
 
     [RelayCommand]
-    private async Task GoToNextHero(PeopleById currentPeople) { }
+    private async Task GoToNextHero(PeopleById currentPeople)
+    {
+        var index = _peoples.IndexOf(_currentPeople);
+        if (index++ >= _peoples.Count - 1)
+            index = 0;
+        _currentPeople = _peoples[index];
+        var p = await GetPeopleByIdFromPeople(_currentPeople);
+        SelectedPeople = await ProcessingPeople(p);
+    }
+
+    private async Task<PeopleById> GetPeopleByIdFromPeople(People people) =>
+        await client.GetPeopleById(people.Id);
 
     [RelayCommand]
-    private async Task GoToMain() => 
+    private async Task GoToMain() =>
         mainPageNavigationService.Navigate();
+
+    [RelayCommand]
+    private async Task ShowPopup(PeopleMedia media) => historyPopupNavigationService.Navigate(media);
 }
