@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MainComponents.Popups;
 using MvvmNavigationLib.Services;
 using System.Windows;
+using Application = System.Windows.Application;
 
 namespace TheBookOfMemory.ViewModels.Popups
 {

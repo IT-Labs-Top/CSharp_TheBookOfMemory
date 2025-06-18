@@ -28,6 +28,7 @@ public static class BuildMainNavigationExtension
                 param => new SelectHeroPageViewModel(param,
                     s.GetRequiredService<IMainApiClient>(),
                     s.GetRequiredService<Filter>(),
+                    s.GetRequiredService<Settings>(),
                     s.GetRequiredService<ILogger>(),
                     s.GetRequiredService<IMessenger>(),
                     s.GetRequiredService<ParameterNavigationService<PersonalInformationViewModel, (People,

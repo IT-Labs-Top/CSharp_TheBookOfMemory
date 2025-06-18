@@ -1,15 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using UserControl = System.Windows.Controls.UserControl;
 
-namespace TheBookOfMemory.Views.Pages
+namespace TheBookOfMemory.Views.Pages;
+
+public partial class MainView : UserControl
 {
-    /// <summary>
-    /// Логика взаимодействия для MainView.xaml
-    /// </summary>
-    public partial class MainView : UserControl
+    public MainView()
     {
-        public MainView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

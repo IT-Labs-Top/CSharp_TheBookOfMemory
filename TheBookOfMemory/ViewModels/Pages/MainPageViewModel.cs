@@ -14,14 +14,14 @@ public partial class MainPageViewModel(
     [RelayCommand]
     private void EventPageNavigation()
     {
-        Settings = new Settings(IsVisuallyImpairedMode: false);
+        Settings.IsVisuallyImpairedMode = false;
         eventPageNavigationService.Navigate();
     }
 
     [RelayCommand]
     private void SwitchVisuallyImpairedMode()
     {
-        Settings = new Settings(IsVisuallyImpairedMode: true);
+        Settings.IsVisuallyImpairedMode = true;
         eventPageNavigationService.Navigate();
     }
 }

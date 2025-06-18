@@ -18,6 +18,7 @@ public partial class SelectHeroPageViewModel(
     string type,
     IMainApiClient client,
     Filter filter,
+    Settings settings,
     ILogger logger,
     IMessenger messenger,
     ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)>
@@ -26,6 +27,7 @@ public partial class SelectHeroPageViewModel(
         filterPopupNavigationService,
     NavigationService<EventPageViewModel> eventPageNavigationService) : ObservableObject, IRecipient<FilterMessage>
 {
+    [ObservableProperty] private Settings _settings = settings; 
     [ObservableProperty] private ObservableCollection<People> _peoples = [];
     [ObservableProperty] private ModeType _selectedModeType = ModeType.MainMode;
     [ObservableProperty] private Filter _filter = filter;

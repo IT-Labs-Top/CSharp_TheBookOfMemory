@@ -12,8 +12,8 @@
     </Style>
 
     <Style TargetType="components:RoundedButton" x:Key="CommonButtonStyle">
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{StaticResource Inter}" />
         <Setter Property="Background" Value="White" />
         <Setter Property="Template">
@@ -43,8 +43,8 @@
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="BorderThickness" Value="2" />
                                 <Style.Triggers>
                                     <DataTrigger
                                         Binding="{Binding DataContext.NoResultsFound, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -60,30 +60,55 @@
                                               Width="32"
                                               HorizontalAlignment="Left"
                                               VerticalAlignment="Center" />
-                            <TextBlock Style="{StaticResource InterText}"
-                                       FontSize="18"
-                                       TextAlignment="Justify"
-                                       FontWeight="SemiBold"
-                                       Text="ИСКАТЬ ГЕРОЯ"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Right"
-                                       Visibility="{Binding DataContext.SelectedModeType,
+                            <TextBlock
+                                TextAlignment="Justify"
+                                FontWeight="SemiBold"
+                                Text="ИСКАТЬ ГЕРОЯ"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Margin="38 0 0 0"
+                                Visibility="{Binding DataContext.SelectedModeType,
                                 Converter={StaticResource EnumToVisibilityConverter},
                                 ConverterParameter={x:Static enums:ModeType.MainMode},
-                                RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                            <TextBox Style="{StaticResource SearchTextBox}"
-                                     FontWeight="SemiBold"
+                                RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <TextBlock.Style>
+                                    <Style BasedOn="{StaticResource InterText}" TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Value="True">
+                                                <Setter Property="FontSize" Value="24" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBox
+                                FontWeight="SemiBold"
                                      TextAlignment="Left"
                                      Margin="40 0 40 0"
                                      Foreground="{StaticResource DescriptionForegroundBrush}"
-                                     FontSize="18"
                                      BorderBrush="Transparent"
                                      Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
                                      FontFamily="{StaticResource Inter}"
                                      Visibility="{Binding DataContext.SelectedModeType,
                                 Converter={StaticResource EnumToVisibilityConverter},
                                 ConverterParameter={x:Static enums:ModeType.SearchMode},
-                                RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <TextBox.Style>
+                                    <Style BasedOn="{StaticResource SearchTextBox}" TargetType="TextBox">
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Value="True">
+                                                <Setter Property="FontSize" Value="24" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
                             <components:RoundedButton Content="{StaticResource CloseIcon}"
                                                       Style="{StaticResource CommonButtonStyle}"
                                                       Width="22" Height="22"
@@ -134,19 +159,20 @@
                     <Border Padding="40 12"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid HorizontalAlignment="Center"  VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
                                 <Image Source="../Images/Filter.png"
-                                   Width="32"
-                                   VerticalAlignment="Center" />
+                                       Width="32"
+                                       VerticalAlignment="Center" />
                                 <TextBlock Style="{StaticResource InterText}"
-                                       FontSize="18"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       TextAlignment="Justify"
-                                       FontWeight="SemiBold"
-                                       Text="ФИЛЬТР"
-                                       VerticalAlignment="Center"
-                                       Margin="16 0 0 0" />
+                                           FontSize="18"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           TextAlignment="Justify"
+                                           FontWeight="SemiBold"
+                                           Text="ФИЛЬТР"
+                                           VerticalAlignment="Center"
+                                           Margin="16 0 0 0" />
                             </StackPanel>
                             <Border Width="32" Height="32"
                                     CornerRadius="16"
@@ -156,20 +182,22 @@
                                     Margin="0 -28 -48 0">
                                 <Border.Style>
                                     <Style TargetType="Border">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" Value="Visible" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding DataContext.Filter.TotalSelectedFilters,RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                                                         Value="0">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            <DataTrigger
+                                                Binding="{Binding DataContext.Filter.TotalSelectedFilters,RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                                                Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-                                <TextBlock Text="{Binding DataContext.Filter.TotalSelectedFilters,RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                                           Foreground="{StaticResource TitleForegroundBrush}"
-                                           FontSize="18"
-                                           FontWeight="SemiBold"
-                                           FontFamily="{StaticResource Inter}"/>
+                                <TextBlock
+                                    Text="{Binding DataContext.Filter.TotalSelectedFilters,RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                                    Foreground="{StaticResource TitleForegroundBrush}"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    FontFamily="{StaticResource Inter}" />
                             </Border>
                         </Grid>
                     </Border>

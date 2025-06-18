@@ -23,12 +23,23 @@
                                        VerticalAlignment="Top"
                                        HorizontalAlignment="Left" />
                             <TextBlock Text="{Binding Description}"
-                                       MaxWidth="535"
-                                       Style="{StaticResource InterText}"
-                                       FontSize="18"
+                                       MaxWidth="540"
                                        FontWeight="Normal"
                                        VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left" />
+                                       HorizontalAlignment="Left">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}">
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Value="True">
+                                                <Setter Property="FontSize" Value="24" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                             <Image Source="../Images/ArrowUp.png"
                                    Width="30" Height="30"
                                    HorizontalAlignment="Right"
@@ -46,15 +57,41 @@
                 CommandParameter="{Binding}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Width="287"
-                            Height="467"
-                            CornerRadius="10"
-                            Padding="16"
-                            Background="White">
+                    <Border
+                        CornerRadius="10"
+                        Padding="16"
+                        Background="White">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Width" Value="287" />
+                                <Setter Property="Height" Value="467" />
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        Value="True">
+                                        <Setter Property="Width" Value="429" />
+                                        <Setter Property="Height" Value="698" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <Grid>
-                            <Border Width="256"
-                                    Height="341"
+                            <Border
                                     VerticalAlignment="Top">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Width" Value="256" />
+                                        <Setter Property="Height" Value="341" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Value="True">
+                                                <Setter Property="Width" Value="383" />
+                                                <Setter Property="Height" Value="510" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
                                 <Border.OpacityMask>
                                     <VisualBrush>
                                         <VisualBrush.Visual>
@@ -73,9 +110,21 @@
                             </Border>
                             <components:AsyncImage Source="{Binding Image}"
                                                    VerticalAlignment="Top"
-                                                   Stretch="UniformToFill"
-                                                   Width="256"
-                                                   Height="341">
+                                                   Stretch="UniformToFill">
+                                <components:AsyncImage.Style>
+                                    <Style TargetType="components:AsyncImage">
+                                        <Setter Property="Width" Value="256" />
+                                        <Setter Property="Height" Value="341" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Value="True">
+                                                <Setter Property="Width" Value="383" />
+                                                <Setter Property="Height" Value="510" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </components:AsyncImage.Style>
                                 <components:AsyncImage.OpacityMask>
                                     <VisualBrush>
                                         <VisualBrush.Visual>
@@ -163,22 +212,17 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата рождения" />
-                        <TextBlock Grid.Column="1" 
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthDate}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Дата рождения"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BirthDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место рождения" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthPlace}" />
-                    </Grid>
+                                   Text="Место рождения"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BirthPlace}"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
             <Border Background="White"
@@ -193,55 +237,38 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата гибели" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathDate}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Дата гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Причина гибели" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathReason}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Причина гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathReason}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место гибели" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathPlace}" />
-                    </Grid>
-                   <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Место гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathPlace}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Обстоятельства гибели" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathInfo}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Обстоятельства гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathInfo}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место захоронения" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BurialPlace}" />
-                    </Grid>
+                                   Text="Место захоронения"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BurialPlace}"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
             <Border Background="White"
@@ -255,54 +282,38 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Род войск" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryBranch}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Род войск"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryBranch}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Воинское звание" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryUnit}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Воинское звание"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryUnit}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Воинская часть" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryBranch}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Воинская часть"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryBranch}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата призыва" />
-                        <TextBlock Grid.Column="1" Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding InvocationDate}" />
-                    </Grid>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                   Text="Дата призыва"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding InvocationDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Последнее место службы" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BurialPlace}" />
-                    </Grid>
+                                   Text="Последнее место службы"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BurialPlace}"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
         </StackPanel>

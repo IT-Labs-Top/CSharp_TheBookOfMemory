@@ -1,3 +1,8 @@
-﻿namespace TheBookOfMemory.Models.Records;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public record Settings(bool IsVisuallyImpairedMode = false);
+namespace TheBookOfMemory.Models.Records;
+
+public partial class Settings : ObservableObject
+{
+    [ObservableProperty] private bool _isVisuallyImpairedMode = false;
+}

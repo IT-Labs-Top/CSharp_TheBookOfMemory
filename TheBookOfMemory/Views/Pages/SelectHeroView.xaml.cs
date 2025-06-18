@@ -1,28 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using UserControl = System.Windows.Controls.UserControl;
 
-namespace TheBookOfMemory.Views.Pages
+namespace TheBookOfMemory.Views.Pages;
+
+public partial class SelectHeroView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for SelectHeroView.xaml
-    /// </summary>
-    public partial class SelectHeroView : UserControl
+    public SelectHeroView()
     {
-        public SelectHeroView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

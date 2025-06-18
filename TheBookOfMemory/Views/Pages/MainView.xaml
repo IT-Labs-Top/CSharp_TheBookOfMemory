@@ -41,6 +41,7 @@
                                           FontWeight="SemiBold"
                                           Foreground="{StaticResource TitleForegroundBrush}"
                                           Background="White"
+                                          Command="{Binding SwitchVisuallyImpairedModeCommand}"
                                           HorizontalContentAlignment="Center"/>
                 <Button Margin="20 0 0 0"
                         Command="{Binding EventPageNavigationCommand}">

@@ -1,51 +1,58 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <FontFamily x:Key="Inter" >pack://application,,,/Resources/Fonts/#Inter</FontFamily>
-    <FontFamily x:Key="Rubik" >pack://application,,,/Resources/Fonts/#Rubik</FontFamily>
+    <FontFamily x:Key="Inter">pack://application,,,/Resources/Fonts/#Inter</FontFamily>
+    <FontFamily x:Key="Rubik">pack://application,,,/Resources/Fonts/#Rubik</FontFamily>
     <Style TargetType="TextBlock" x:Key="BaseTextStyle">
-        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="InterText">
-        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Inter}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="RubikText">
-        <Setter Property="FontFamily" Value="{StaticResource Rubik}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Rubik}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="TitleText">
-        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
-        <Setter Property="FontSize" Value="48"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Inter}" />
+        <Setter Property="FontSize" Value="48" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="FilterText">
-        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Foreground" Value="{StaticResource FilterTextGrayBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Inter}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource FilterTextGrayBrush}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}" x:Key="HeroText">
-        <Setter Property="FontFamily" Value="{StaticResource Inter}"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{StaticResource Inter}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}" />
+        <Style.Triggers>
+            <DataTrigger
+                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Value="True">
+                <Setter Property="FontSize" Value="30" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="BaseButtonText">
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="TabItemText">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="28"/>
-        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontWeight" Value="Medium" />
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="HeroInformationTitleText">
