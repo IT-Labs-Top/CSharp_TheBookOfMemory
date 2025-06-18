@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvvmNavigationLib.Services;
@@ -20,6 +21,7 @@ public static class BuildMainNavigationExtension
     {
         builder.ConfigureServices((context, services) =>
         {
+            var sliderValue = context.Configuration.GetSection("sliderValue").Get<SliderValue>();
             services.AddSingleton<NavigationStore>();
             services.AddUtilityNavigationServices<NavigationStore>();
             services.AddNavigationService<MainPageViewModel, NavigationStore>();
@@ -28,7 +30,8 @@ public static class BuildMainNavigationExtension
                 param => new SelectHeroPageViewModel(param,
                     s.GetRequiredService<IMainApiClient>(),
                     s.GetRequiredService<Filter>(),
-                    s.GetRequiredService<Settings>(),
+                    s.GetRequiredService<Settings>(), 
+                    sliderValue,
                     s.GetRequiredService<ILogger>(),
                     s.GetRequiredService<IMessenger>(),
                     s.GetRequiredService<ParameterNavigationService<PersonalInformationViewModel, (People,

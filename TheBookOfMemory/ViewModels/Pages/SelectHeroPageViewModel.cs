@@ -19,6 +19,7 @@ public partial class SelectHeroPageViewModel(
     IMainApiClient client,
     Filter filter,
     Settings settings,
+    SliderValue sliderValue,
     ILogger logger,
     IMessenger messenger,
     ParameterNavigationService<PersonalInformationViewModel, (People, ObservableCollection<People>)>
@@ -48,9 +49,10 @@ public partial class SelectHeroPageViewModel(
             if (mode != ModeType.MainMode) return;
             IsVisibleKeyboard = true;
             SearchQuery = string.Empty;
-            await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null),
-                GetFilter(null, Filter.SelectedMedal),
-                (int?)Filter.AgeBefore, (int?)Filter.AgeAfter, SearchQuery);
+            await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null, null, null),
+                GetFilter(null, Filter.SelectedMedal, null, null),
+                GetFilter(null, null, null, (int?)Filter.AgeBefore),
+                GetFilter(null, null, (int?)Filter.AgeAfter, null));
         }
         catch (Exception e)
         {
@@ -70,9 +72,11 @@ public partial class SelectHeroPageViewModel(
         try
         {
             if (SelectedModeType != ModeType.SearchMode) return;
-            await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null),
-                GetFilter(null, Filter.SelectedMedal),
-                (int?)Filter.AgeBefore, (int?)Filter.AgeAfter, SearchQuery);
+            await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null, null, null),
+                GetFilter(null, Filter.SelectedMedal, null, null),
+                GetFilter(null, null,null, (int?)Filter.AgeBefore), 
+                GetFilter(null,null, (int?)Filter.AgeAfter, null),
+                SearchQuery);
         }
         catch (Exception e)
         {
@@ -89,7 +93,7 @@ public partial class SelectHeroPageViewModel(
         await UpdatePeoplesAsync(type, null, null, null, null);
     }
 
-    private int? GetFilter(Rank? rank, Medal? medal)
+    private int? GetFilter(Rank? rank, Medal? medal , int? ageAfter, int? ageBefore)
     {
         int? number = null;
 
@@ -105,15 +109,32 @@ public partial class SelectHeroPageViewModel(
             }
         }
 
-        if (medal is null) return number;
-
-        if (medal.Id != -1)
+        if (medal is not null)
         {
-            number = medal.Id;
+            if (medal.Id != -1)
+            {
+                number = medal.Id;
+            }
+            else
+            {
+                return null;
+            }
         }
-        else
+
+        if (ageAfter is not null)
         {
-            return null;
+            if (ageAfter == sliderValue.Maximum)
+            {
+                return null;
+            }
+        }
+
+        if (ageBefore is not null)
+        {
+            if (ageBefore == sliderValue.Minimum)
+            {
+                return null;
+            }
         }
 
         return number;
