@@ -157,7 +157,7 @@
                         <components:RoundedButton.Style>
                             <Style BasedOn="{StaticResource {x:Type components:RoundedButton}}"
                                    TargetType="components:RoundedButton">
-                                <Setter Property="Background" Value="{StaticResource TitleForegroundBrush}" />
+                                <Setter Property="Background" Value="{StaticResource FilterTextGrayBrush}" />
                                 <Setter Property="Foreground" Value="White" />
                                 <Setter Property="Opacity" Value="1" />
                                 <Style.Triggers>
