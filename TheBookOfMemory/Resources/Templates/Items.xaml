@@ -198,6 +198,35 @@
         </Button>
     </DataTemplate>
 
+    <DataTemplate x:Key="PeopleHistoryCardTemplate" DataType="{x:Type records:PeopleMedia}">
+        <Button Height="104"
+                MinWidth="1373">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="White"
+                            CornerRadius="10"
+                            Padding="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <components:AsyncImage Source="{Binding Media}"
+                                                   Margin="0 0 20 0"
+                                                   Width="48"
+                                                   Height="64"
+                                                   Stretch="Fill"/>
+                            <TextBlock Grid.Column="1"
+                                       Style="{StaticResource HeroInformationTitleText}"
+                                       Text="{Binding Title}"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </DataTemplate>
+
     <DataTemplate x:Key="PeopleInformationTemplate" DataType="{x:Type records:PeopleById}">
         <StackPanel Orientation="Vertical">
             <Border Background="White"

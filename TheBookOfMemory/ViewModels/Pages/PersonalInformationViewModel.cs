@@ -37,15 +37,24 @@ public partial class PersonalInformationViewModel(
     private async Task<PeopleById> GetPeopleByIdFromPeople(People people) =>
         await client.GetPeopleById(people.Id);
 
-    private async Task<PeopleById> ProcessingPeople(PeopleById peopleById) =>
-        peopleById with { Image = await client.LoadImageAndGetPath(logger, peopleById.Image) };
+    private async Task<PeopleById> ProcessingPeople(PeopleById peopleById)
+    {
+        var updatedPeople = peopleById with
+        {
+            Image = await client.LoadImageAndGetPath(logger, peopleById.Image),
+            PeopleMedia = (await Task.WhenAll(peopleById.PeopleMedia.Select(async media =>
+                media with { Media = await client.LoadImageAndGetPath(logger, media.Media) }))).ToList()
+        };
+
+        return updatedPeople;
+    }
 
     [RelayCommand]
     private async Task GoBack() =>
         goBackNavigationService.Navigate(tuple.people.Type);
 
     [RelayCommand]
-    private async Task GoToNextHero(PeopleById currentPeople) {}
+    private async Task GoToNextHero(PeopleById currentPeople) { }
 
     [RelayCommand]
     private async Task GoToMain() => 
