@@ -77,7 +77,7 @@
                         </Border.Style>
                         <Grid>
                             <Border
-                                    VerticalAlignment="Top">
+                                VerticalAlignment="Top">
                                 <Border.Style>
                                     <Style TargetType="Border">
                                         <Setter Property="Width" Value="256" />
@@ -206,23 +206,28 @@
                     Margin="0 0 0 10"
                     MinHeight="144">
                 <StackPanel Orientation="Vertical">
-                    <Grid Margin="0 12">
+                    <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата рождения"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthDate}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Дата рождения" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BirthDate}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место рождения"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthPlace}"/>
-                    </StackPanel>
+                                   Text="Место рождения" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BirthPlace}" />
+                    </Grid>
                 </StackPanel>
             </Border>
             <Border Background="White"
@@ -231,44 +236,61 @@
                     Margin="0 0 0 10"
                     MinHeight="300">
                 <StackPanel Orientation="Vertical">
-                    <Grid Margin="0 12">
+                    <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="511"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата гибели"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathDate}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Дата гибели" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathDate}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Причина гибели"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathReason}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Причина гибели" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathReason}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место гибели"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathPlace}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Место гибели" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathPlace}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Обстоятельства гибели"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathInfo}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Обстоятельства гибели" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathInfo}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место захоронения"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BurialPlace}"/>
-                    </StackPanel>
+                                   Text="Место захоронения" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BurialPlace}" />
+                    </Grid>
                 </StackPanel>
             </Border>
             <Border Background="White"
@@ -276,44 +298,60 @@
                     CornerRadius="10"
                     MinHeight="290">
                 <StackPanel Orientation="Vertical">
-                    <Grid Margin="0 12">
+                    <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Род войск"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryBranch}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Род войск" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryBranch}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Воинское звание"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryUnit}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Воинское звание" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryUnit}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Воинская часть"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryBranch}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Воинская часть" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryBranch}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата призыва"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding InvocationDate}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="52">
+                                   Text="Дата призыва" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding InvocationDate}" />
+                    </Grid>
+                    <Grid Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Последнее место службы"/>
-                        <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BurialPlace}"/>
-                    </StackPanel>
+                                   Text="Последнее место службы" />
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BurialPlace}" />
+                    </Grid>
                 </StackPanel>
             </Border>
         </StackPanel>
