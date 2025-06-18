@@ -52,11 +52,12 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="28"/>
         <Setter Property="Foreground" Value="{StaticResource TitleForegroundBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="HeroInformationText">
-        <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontSize" Value="22"/>
         <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 </ResourceDictionary>

@@ -67,7 +67,7 @@
                 <ControlTemplate>
                     <Grid x:Name="Grid">
                         <Border x:Name="Rectangle1" CornerRadius="8" HorizontalAlignment="Stretch" 
-                                VerticalAlignment="Stretch" Width="Auto" MinHeight="300" MaxHeight="300" 
+                                VerticalAlignment="Stretch" Width="8" MinHeight="300" MaxHeight="300" 
                                 Background="{StaticResource DescriptionForegroundBrush}"/>
                     </Grid>
                 </ControlTemplate>
