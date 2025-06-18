@@ -47,4 +47,16 @@
         <Setter Property="FontSize" Value="28"/>
         <Setter Property="FontWeight" Value="Medium"/>
     </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="HeroInformationTitleText">
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Foreground" Value="{StaticResource TitleForegroundBrush}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="HeroInformationText">
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
+    </Style>
 </ResourceDictionary>

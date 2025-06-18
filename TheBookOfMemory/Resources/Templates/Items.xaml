@@ -149,21 +149,115 @@
         </Button>
     </DataTemplate>
 
-    <!--<DataTemplate x:Key="Information" DataType="{x:Type records:PeopleById}">
-        <ScrollViewer>
-            <ItemsControl>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type records:PeopleById}">
-                        <StackPanel Orientation="Vertical">
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </DataTemplate>-->
+    <DataTemplate x:Key="PeopleInformationTemplate" DataType="{x:Type records:PeopleById}">
+        <StackPanel Orientation="Vertical">
+            <Border Background="White"
+                    Padding="20"
+                    CornerRadius="10"
+                    Height="144"
+                    Margin="0 0 0 10">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Дата рождения"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BirthDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Место рождения"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BirthPlace}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border Background="White"
+                    Padding="20"
+                    CornerRadius="10"
+                    Height="300"
+                    Margin="0 0 0 10">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Дата гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Причина гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathReason}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Место гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathPlace}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Обстоятельства гибели"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding DeathInfo}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Место захоронения"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BurialPlace}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border Background="White"
+                    Padding="20"
+                    CornerRadius="10"
+                    Height="300">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Род войск"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryBranch}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Воинское звание"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryUnit}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Воинская часть"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding MilitaryBranch}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Дата призыва"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding InvocationDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Height="52">
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                   Text="Последнее место службы"/>
+                        <TextBlock Style="{StaticResource HeroInformationText}"
+                                   Text="{Binding BurialPlace}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

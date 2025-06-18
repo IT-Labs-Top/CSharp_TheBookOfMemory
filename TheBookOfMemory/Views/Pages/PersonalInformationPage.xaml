@@ -58,16 +58,19 @@
                     Margin="20 0 0 40">
                 <TabControl>
                     <TabItem Style="{StaticResource BaseTabItemStyle}"
-                             Header="Основная информация"
-                             Margin="0 0 40 0"
-                             Width="318">
+                             Header="Основная информация">
                         <TabItem.Content>
-                            <TextBlock Style="{StaticResource TitleText}"
-                                       Text="Личная информация"></TextBlock>
+                            <ScrollViewer Style="{StaticResource ContentSliderScrollViewer}"
+                                          VerticalScrollBarVisibility="Auto"
+                                          MaxHeight="845">
+                                <ContentControl ContentTemplate="{StaticResource PeopleInformationTemplate}"
+                                                Content="{Binding SelectedPeople}"/>
+                            </ScrollViewer>
                         </TabItem.Content>
                     </TabItem>
                     <TabItem Style="{StaticResource BaseTabItemStyle}"
-                             Header="Личная история">
+                             Header="Личная история"
+                             Margin="20 0 -20 0">
                         <TabItem.Content>
                             <TextBlock Style="{StaticResource TitleText}"
                                        Text="asdasdasd"></TextBlock>

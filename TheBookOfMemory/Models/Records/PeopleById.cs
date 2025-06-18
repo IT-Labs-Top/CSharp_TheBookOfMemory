@@ -21,4 +21,4 @@ public record PeopleById(
     string BurialPlace,
     List<PeopleMedia> PeopleMedia,
     List<Medal> Medals
-    );
+   );
