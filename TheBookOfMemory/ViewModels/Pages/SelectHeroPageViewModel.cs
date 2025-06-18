@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MvvmNavigationLib.Services;
-using Newtonsoft.Json.Bson;
 using Serilog;
 using TheBookOfMemory.Models.Client;
 using TheBookOfMemory.Models.Entities;
@@ -37,11 +35,21 @@ public partial class SelectHeroPageViewModel(
     [ObservableProperty] private bool _noResultsFound;
 
     [RelayCommand]
-    private void SwitchMode(ModeType mode)
+    private async Task SwitchMode(ModeType mode)
     {
-        SelectedModeType = mode;
-        if (mode != ModeType.MainMode) return;
-        SearchQuery = string.Empty;
+        try
+        {
+            SelectedModeType = mode;
+            if (mode != ModeType.MainMode) return;
+            SearchQuery = string.Empty;
+            await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null),
+                GetFilter(null, Filter.SelectedMedal),
+                (int?)Filter.AgeBefore, (int?)Filter.AgeAfter, SearchQuery);
+        }
+        catch (Exception e)
+        {
+            logger.Error(e.Message);
+        }
     }
 
     [RelayCommand]
@@ -53,25 +61,9 @@ public partial class SelectHeroPageViewModel(
     [RelayCommand]
     private async Task Search()
     {
-        if (SelectedModeType == ModeType.SearchMode && !string.IsNullOrWhiteSpace(SearchQuery))
-        {
-            var filters = Filter;
-            if (filters.SelectedMedal is null || filters.SelectedMedal.Id == -1)
-            {
-                filters.SelectedMedal = null;
-            }
-
-            if (filters.SelectedRank is null || filters.SelectedRank.Id == -1)
-            {
-                filters.SelectedRank = null;
-            }
-
-            await UpdatePeoplesAsync(Filter.Type, null, null, null, null, SearchQuery);
-        }
-        else
-        {
-            await UpdatePeoplesAsync(Filter.Type, null, null, null, null);
-        }
+        if (SelectedModeType != ModeType.SearchMode) return;
+        await UpdatePeoplesAsync(Filter.Type, GetFilter(Filter.SelectedRank, null), GetFilter(null, Filter.SelectedMedal),
+            (int?)Filter.AgeBefore, (int?)Filter.AgeAfter, SearchQuery);
     }
 
     [RelayCommand]
@@ -81,6 +73,36 @@ public partial class SelectHeroPageViewModel(
         Filter.Type = type;
         await LoadRankAndMedals();
         await UpdatePeoplesAsync(type, null, null, null, null);
+    }
+
+    private int? GetFilter(Rank? rank, Medal? medal)
+    {
+        int? number = null;
+
+        if (rank is not null)
+        {
+            if (rank.Id != -1)
+            {
+                number = rank.Id;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        if (medal is null) return number;
+
+        if (medal.Id != -1)
+        {
+            number = medal.Id;
+        }
+        else
+        {
+            return null;
+        }
+
+        return number;
     }
 
     private async Task LoadRankAndMedals()
@@ -144,12 +166,12 @@ public partial class SelectHeroPageViewModel(
         {
             var messageValue = message.Value;
 
-            if (messageValue.SelectedMedal.Id == -1)
+            if (messageValue.SelectedMedal?.Id == -1)
             {
                 messageValue.SelectedMedal = null;
             }
 
-            if (messageValue.SelectedRank.Id == -1)
+            if (messageValue.SelectedRank?.Id == -1)
             {
                 messageValue.SelectedRank = null;
             }

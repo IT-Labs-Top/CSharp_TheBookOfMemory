@@ -150,6 +150,8 @@
                                 <Binding Path="Filters.SelectedRank" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
                                 <Binding Path="Filters.AgeBefore" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
                                 <Binding Path="Filters.AgeAfter" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                                <Binding Path="SliderValue.Minimum" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                                <Binding Path="SliderValue.Maximum" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
                             </MultiBinding>
                         </components:RoundedButton.IsEnabled>
                         <components:RoundedButton.Style>

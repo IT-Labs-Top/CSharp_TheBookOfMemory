@@ -7,6 +7,7 @@
     <Color x:Key="OrangeColor">#FE6A02</Color>
     <Color x:Key="AlmostWhite">#ECF5EF</Color>
     <Color x:Key="RedColor">#AA0000</Color>
+    <Color x:Key="OpacityRedColor" >#26AA0000</Color>
     <Color x:Key="GrayColor">#2F2F2F</Color>
     <Color x:Key="LightGrayColor">#D9D9D9</Color>
     <Color x:Key="SoftGrayColor">#7C7C7C</Color>

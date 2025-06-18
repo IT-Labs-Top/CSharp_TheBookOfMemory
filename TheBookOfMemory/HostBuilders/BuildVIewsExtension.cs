@@ -30,7 +30,7 @@ namespace TheBookOfMemory.HostBuilders
                     s.GetRequiredService<NavigationService<InactivityPopupViewModel>>(),
                     s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>()));
                 services.AddSingleton<Settings>();
-                services.AddSingleton<Filter>();
+                services.AddSingleton<Filter>(s => new Filter(context.Configuration.GetSection("sliderValue").Get<SliderValue>()));
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton(s => new Views.Windows.MainWindow()
                 {

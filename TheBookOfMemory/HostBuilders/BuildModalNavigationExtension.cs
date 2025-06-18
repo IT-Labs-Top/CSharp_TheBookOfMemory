@@ -23,7 +23,6 @@ namespace TheBookOfMemory.HostBuilders
             {
                 var time = context.Configuration.GetValue<int>("popupInactivityTime");
                 var sliderValue = context.Configuration.GetSection("sliderValue").Get<SliderValue>();
-                var filter = new Filter { AgeAfter = sliderValue.Maximum, AgeBefore = sliderValue.Minimum };
                 services.AddSingleton<ModalNavigationStore>();
                 services.AddUtilityNavigationServices<ModalNavigationStore>();
 
@@ -31,7 +30,7 @@ namespace TheBookOfMemory.HostBuilders
                     .AddParameterNavigationService<FilterPopupViewModel, ModalNavigationStore, (
                         ObservableCollection<Rank>, ObservableCollection<Medal>)>(s => param =>
                         new FilterPopupViewModel(s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>(),
-                            sliderValue, filter,
+                            sliderValue, s.GetRequiredService<Filter>(),
                             param.Item1, param.Item2, s.GetRequiredService<IMessenger>()));
 
                 services.AddNavigationService<PasswordPopupViewModel, ModalNavigationStore>(s =>

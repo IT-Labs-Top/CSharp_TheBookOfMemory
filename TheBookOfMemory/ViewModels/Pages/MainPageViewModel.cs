@@ -12,11 +12,16 @@ public partial class MainPageViewModel(
     [ObservableProperty] private Settings _settings = settings;
 
     [RelayCommand]
-    private void EventPageNavigation() => eventPageNavigationService.Navigate();
+    private void EventPageNavigation()
+    {
+        Settings = new Settings(IsVisuallyImpairedMode: false);
+        eventPageNavigationService.Navigate();
+    }
 
     [RelayCommand]
     private void SwitchVisuallyImpairedMode()
     {
-        Settings = new Settings(IsVisuallyImpairedMode: !Settings.IsVisuallyImpairedMode);
+        Settings = new Settings(IsVisuallyImpairedMode: true);
+        eventPageNavigationService.Navigate();
     }
 }
