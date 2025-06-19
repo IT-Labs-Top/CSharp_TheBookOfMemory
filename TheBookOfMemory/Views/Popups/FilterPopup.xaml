@@ -55,8 +55,8 @@
                             <ComboBox HorizontalAlignment="Left"
                                       Margin="0 8 0 0" 
                                       ItemsSource="{Binding Ranks}"
-                                      SelectedItem="{Binding Filters.SelectedRank, Mode=TwoWay}"
-                                      DisplayMemberPath="Title"/>
+                                      ItemTemplate="{StaticResource FilterTextBlockTemplate}"
+                                      SelectedItem="{Binding Filters.SelectedRank, Mode=TwoWay}"/>
                         </StackPanel>
                         <StackPanel Margin="12 0 0 0">
                             <TextBlock Style="{StaticResource FilterText}"

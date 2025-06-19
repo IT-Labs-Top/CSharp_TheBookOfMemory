@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:records="clr-namespace:TheBookOfMemory.Models.Records"
-                    xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents">
+                    xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+                    xmlns:records="clr-namespace:TheBookOfMemory.Models.Records">
     <DataTemplate x:Key="EventItemsTemplate" DataType="{x:Type records:Event}">
         <Button Margin="10"
                 Command="{Binding DataContext.NavigateToSelectPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -196,6 +196,11 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FilterTextBlockTemplate" DataType="{x:Type records:Rank}">
+        <TextBlock Style="{StaticResource FilterComboboxTextBlockStyle}"
+                   Text="{Binding Title}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleInformationTemplate" DataType="{x:Type records:PeopleById}">

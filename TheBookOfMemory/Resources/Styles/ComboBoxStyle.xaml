@@ -45,10 +45,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                     <Border x:Name="Border"
-                            Padding="2"
+                            Padding="8"
                             SnapsToDevicePixels="true"
                             Background="Transparent"
-                            Margin=" 0 2">
+                            Margin=" 0 2"
+                            CornerRadius="10">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SelectionStates">
                                 <VisualState x:Name="Unselected" />
@@ -56,7 +57,7 @@
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
                                                                       Storyboard.TargetProperty="(Panel.Background).
-                    (SolidColorBrush.Color)">
+                                                                      (SolidColorBrush.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
                                                                  Value="{StaticResource OpacityRedColor}" />
                                         </ColorAnimationUsingKeyFrames>
@@ -66,7 +67,7 @@
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
                                                                       Storyboard.TargetProperty="(Panel.Background).
-                    (SolidColorBrush.Color)">
+                                                                      (SolidColorBrush.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
                                                                  Value="White" />
                                         </ColorAnimationUsingKeyFrames>
