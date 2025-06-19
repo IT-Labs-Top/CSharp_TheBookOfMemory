@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -132,29 +131,43 @@
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                AllowsTransparency="True"
                                Focusable="False"
-                               PopupAnimation="Fade">
-
-                            <Grid Name="DropDown"
-                                  SnapsToDevicePixels="True"
-                                  MinWidth="{TemplateBinding ActualWidth}"
-                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border CornerRadius="32"
-                                        x:Name="DropDownBorder"
-                                        Background="White"
-                                        BorderThickness="2"
-                                        BorderBrush="{StaticResource DescriptionForegroundBrush}" />
-                                <ScrollViewer Width="495" MaxHeight="220" Style="{DynamicResource ComboBoxScrollViewer}"
-                                              SnapsToDevicePixels="True" HorizontalAlignment="Center"
-                                              HorizontalScrollBarVisibility="Disabled"
-                                              >
-                                    <ScrollViewer.OpacityMask>
-                                        <VisualBrush Visual="{Binding ElementName=DropDownBorder}" />
-                                    </ScrollViewer.OpacityMask>
-                                    <StackPanel IsItemsHost="True"
-                                                Margin="2"
-                                                KeyboardNavigation.DirectionalNavigation="Contained" />
-                                </ScrollViewer>
-                            </Grid>
+                               PopupAnimation="Fade"
+                               Margin="-6">
+                            <Border Background="Transparent"
+                                    Padding="6">
+                                <Border>
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="#000000"
+                                                          Opacity="0.25"
+                                                          ShadowDepth="6"
+                                                          Direction="235"
+                                                          BlurRadius="6" />
+                                    </Border.Effect>
+                                    <Grid Name="DropDown"
+                                          SnapsToDevicePixels="True"
+                                          MinWidth="{TemplateBinding ActualWidth}"
+                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border CornerRadius="32"
+                                                x:Name="DropDownBorder"
+                                                Background="White" />
+                                        <Border Padding="10"
+                                                Background="Transparent">
+                                            <Border.OpacityMask>
+                                                <VisualBrush Visual="{Binding ElementName=DropDownBorder}" />
+                                            </Border.OpacityMask>
+                                            <ScrollViewer Width="495"
+                                                          Height="220"
+                                                          Style="{DynamicResource CommonScrollViewerStyle}"
+                                                          SnapsToDevicePixels="True" HorizontalAlignment="Center"
+                                                          HorizontalScrollBarVisibility="Disabled">
+                                                <StackPanel IsItemsHost="True"
+                                                            Margin="2"
+                                                            KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Border>
                         </Popup>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -180,11 +193,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsDropDownOpen" Value="true">
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Background" Value="#F7F8F8" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>
