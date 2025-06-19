@@ -35,7 +35,7 @@
                     Padding="20">
                     <StackPanel>
                         <TextBlock Foreground="{StaticResource DescriptionForegroundBrush}"
-                                   Text="Завершение сеанаса"
+                                   Text="Завершение сеанса"
                                    FontSize="40"
                                    FontWeight="Bold"
                                    FontFamily="{StaticResource Inter}"
