@@ -36,7 +36,6 @@ public partial class FilterPopupViewModel(
     private void ClearFilters()
     {  Filters.Clear(Ranks.FirstOrDefault(f => f.Id == -1),
         Medals.FirstOrDefault(f => f.Id == -1), (int)SliderValue.Minimum, (int)SliderValue.Maximum);
-
     }
 
     [RelayCommand]

@@ -93,6 +93,9 @@ public partial class SelectHeroPageViewModel(
         await UpdatePeoplesAsync(type, null, null, null, null);
     }
 
+    [RelayCommand]
+    private async Task Unloaded() => Filter.Clear();
+
     private int? GetFilter(Rank? rank, Medal? medal , int? ageAfter, int? ageBefore)
     {
         int? number = null;
@@ -147,15 +150,11 @@ public partial class SelectHeroPageViewModel(
 
         var ranksFromApi = await client.GetRank();
         foreach (var rank in ranksFromApi)
-        {
             Ranks.Add(rank);
-        }
 
         var medalsFromApi = await client.GetMedal();
         foreach (var medal in medalsFromApi)
-        {
             Medals.Add(medal);
-        }
     }
 
     private async Task UpdatePeoplesAsync(string typePeople, int? rank, int? medal, int? ageBefore, int? ageAfter,
@@ -186,9 +185,7 @@ public partial class SelectHeroPageViewModel(
                 person with { Image = await client.LoadImageAndGetPath(logger, person.Image) }));
 
             foreach (var person in updatedPeoples)
-            {
                 Peoples.Add(person);
-            }
         }
         catch (Exception e)
         {
@@ -196,11 +193,9 @@ public partial class SelectHeroPageViewModel(
         }
     }
 
-    private async Task<ObservableCollection<People>> GetPeoples(string typePeople, int? rank, int? medal,
-        int? ageBefore, int? ageAfter)
-    {
-        return [.. await client.GetPeople(typePeople, rank, medal, ageBefore, ageAfter)];
-    }
+    private async Task<ObservableCollection<People>> GetPeoples(
+        string typePeople, int? rank, int? medal, int? ageBefore, int? ageAfter) => 
+        [.. await client.GetPeople(typePeople, rank, medal, ageBefore, ageAfter)];
 
     public async void Receive(FilterMessage message)
     {

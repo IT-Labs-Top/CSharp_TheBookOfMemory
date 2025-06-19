@@ -19,12 +19,27 @@ public partial class Filter(SliderValue sliderValue) : ObservableObject
         { "ageAfter", 0 }
     };
 
-    public void Clear(Rank rank, Medal medal, int ageBefore, int ageAfter)
+    public void Clear(Rank? rank, Medal? medal, int ageBefore, int ageAfter)
     {
         SelectedRank = rank;
         SelectedMedal = medal;
         AgeAfter = ageAfter;
         AgeBefore = ageBefore;
+        NumberOfSelectedFilters = new Dictionary<string, int>
+        {
+            { "rank", 0 },
+            { "medal", 0 },
+            { "ageBefore", 0 },
+            { "ageAfter", 0 }
+        };
+    }
+
+    public void Clear()
+    {
+        SelectedRank = null;
+        SelectedMedal = null;
+        AgeAfter = sliderValue.Maximum;
+        AgeBefore = sliderValue.Minimum;
         NumberOfSelectedFilters = new Dictionary<string, int>
         {
             { "rank", 0 },
