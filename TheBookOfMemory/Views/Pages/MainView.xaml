@@ -33,7 +33,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <components:RoundedButton CornerRadius="10"
-                                          Padding="20"
+                                          Padding="18"
                                           Width="472"
                                           Height="87"
                                           Content="Режим для слабовидящих"

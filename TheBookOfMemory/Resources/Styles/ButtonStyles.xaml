@@ -35,6 +35,7 @@
 
     <Style TargetType="components:RoundedButton" x:Key="SearchHeroButtonStyle">
         <Setter Property="MinWidth" Value="254" />
+        <Setter Property="MaxWidth" Value="1100"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components:RoundedButton">
@@ -66,7 +67,7 @@
                                 Text="ИСКАТЬ ГЕРОЯ"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Right"
-                                Margin="38 0 0 0"
+                                Margin="38 4 0 0"
                                 Visibility="{Binding DataContext.SelectedModeType,
                                 Converter={StaticResource EnumToVisibilityConverter},
                                 ConverterParameter={x:Static enums:ModeType.MainMode},
@@ -86,19 +87,19 @@
                             </TextBlock>
                             <TextBox
                                 FontWeight="SemiBold"
-                                     TextAlignment="Left"
-                                     Margin="40 0 40 0"
-                                     Foreground="{StaticResource DescriptionForegroundBrush}"
-                                     BorderBrush="Transparent"
-                                     Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
-                                     FontFamily="{StaticResource Inter}"
-                                     Visibility="{Binding DataContext.SelectedModeType,
+                                TextAlignment="Left"
+                                Margin="40 0 40 0"
+                                Foreground="{StaticResource DescriptionForegroundBrush}"
+                                BorderBrush="Transparent"
+                                Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
+                                FontFamily="{StaticResource Inter}"
+                                Visibility="{Binding DataContext.SelectedModeType,
                                 Converter={StaticResource EnumToVisibilityConverter},
                                 ConverterParameter={x:Static enums:ModeType.SearchMode},
                                 RelativeSource={RelativeSource AncestorType=UserControl}}">
                                 <TextBox.Style>
                                     <Style BasedOn="{StaticResource SearchTextBox}" TargetType="TextBox">
-                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="FontSize" Value="18" />
                                         <Style.Triggers>
                                             <DataTrigger
                                                 Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -172,7 +173,7 @@
                                            FontWeight="SemiBold"
                                            Text="ФИЛЬТР"
                                            VerticalAlignment="Center"
-                                           Margin="16 0 0 0" />
+                                           Margin="16 2 0 0" />
                             </StackPanel>
                             <Border Width="32" Height="32"
                                     CornerRadius="16"
