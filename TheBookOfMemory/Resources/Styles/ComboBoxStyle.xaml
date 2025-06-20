@@ -26,8 +26,49 @@
                   VerticalAlignment="Top"
                   Margin="0 12 0 0"
                   Data="M2.45432 7.93967C2.73561 7.65847 3.11707 7.50049 3.51482 7.50049C3.91256 7.50049 4.29402 7.65847 4.57532 7.93967L12.0003 15.3647L19.4253 7.93967C19.7082 7.66643 20.0871 7.51524 20.4804 7.51866C20.8737 7.52208 21.2499 7.67983 21.528 7.95794C21.8062 8.23606 21.9639 8.61227 21.9673 9.00557C21.9707 9.39886 21.8196 9.77777 21.5463 10.0607L13.0608 18.5462C12.7795 18.8274 12.3981 18.9854 12.0003 18.9854C11.6026 18.9854 11.2211 18.8274 10.9398 18.5462L2.45432 10.0607C2.17311 9.77938 2.01514 9.39792 2.01514 9.00017C2.01514 8.60243 2.17311 8.22096 2.45432 7.93967Z"
-                  Fill="#2F2F2F" />
-
+                  Fill="#2F2F2F">
+                <Path.Style>
+                    <Style TargetType="Path">
+                        <Setter Property="RenderTransformOrigin" Value="0.5 0.6"/>
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <RotateTransform Angle="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource FindAncestor, AncestorType=ToggleButton}}"
+                                         Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="RenderTransform.(RotateTransform.Angle)">
+                                            <DoubleAnimation To="-180" 
+                                                             Duration="0:0:.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase Power="2"
+                                                               EasingMode="EaseIn"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="RenderTransform.(RotateTransform.Angle)">
+                                            <DoubleAnimation To="0" 
+                                                             Duration="0:0:.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase Power="2"
+                                                               EasingMode="EaseIn"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
         </Grid>
     </ControlTemplate>
 
@@ -41,6 +82,11 @@
                 Value="true" />
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource GrayColor}"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
@@ -75,11 +121,41 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter />
+                        <ContentPresenter/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                       <Storyboard TargetProperty="Foreground.(SolidColorBrush.Color)">
+                            <ColorAnimation To="{StaticResource RedColor}"
+                                           Duration="0:0:0.2">
+                                <ColorAnimation.EasingFunction>
+                                    <PowerEase Power="2"
+                                               EasingMode="EaseInOut"/>
+                                </ColorAnimation.EasingFunction>
+                            </ColorAnimation>
+                       </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="Foreground.(SolidColorBrush.Color)">
+                            <ColorAnimation To="{StaticResource GrayColor}"
+                                            Duration="0:0:0.2">
+                                <ColorAnimation.EasingFunction>
+                                    <PowerEase Power="2"
+                                               EasingMode="EaseInOut"/>
+                                </ColorAnimation.EasingFunction>
+                            </ColorAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
@@ -157,10 +233,9 @@
                                                 <VisualBrush Visual="{Binding ElementName=DropDownBorder}" />
                                             </Border.OpacityMask>
                                             <ScrollViewer Width="495"
-                                                          Height="220"
-                                                          Style="{DynamicResource CommonScrollViewerStyle}"
-                                                          SnapsToDevicePixels="True" HorizontalAlignment="Center"
-                                                          HorizontalScrollBarVisibility="Disabled">
+                                                          SnapsToDevicePixels="True"
+                                                          HorizontalAlignment="Center"
+                                                          Style="{StaticResource ContentSliderScrollViewer}">
                                                 <StackPanel IsItemsHost="True"
                                                             Margin="2"
                                                             KeyboardNavigation.DirectionalNavigation="Contained" />

@@ -26,6 +26,7 @@
     <None Remove="Resources\Images\Logo.png" />
     <None Remove="Resources\Images\Text.png" />
     <None Remove="Resources\Images\Win.png" />
+    <None Remove="Resources\Styles\ScrollViewerStyle.xaml~RFeb7f6a.TMP" />
     <None Remove="ViewModels\Popups\HistoryPopupViewModel.cs~RF1383b84.TMP" />
   </ItemGroup>
 

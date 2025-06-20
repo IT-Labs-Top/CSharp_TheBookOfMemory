@@ -76,7 +76,6 @@
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="FilterComboboxTextBlockStyle">
-        <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="20"/>
     </Style>

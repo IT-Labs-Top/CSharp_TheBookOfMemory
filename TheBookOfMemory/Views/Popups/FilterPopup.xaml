@@ -55,7 +55,7 @@
                             <ComboBox HorizontalAlignment="Left"
                                       Margin="0 8 0 0" 
                                       ItemsSource="{Binding Ranks}"
-                                      ItemTemplate="{StaticResource FilterTextBlockTemplate}"
+                                      ItemTemplate="{StaticResource FilterRankTextBlockTemplate}"
                                       SelectedItem="{Binding Filters.SelectedRank, Mode=TwoWay}"/>
                         </StackPanel>
                         <StackPanel Margin="12 0 0 0">
@@ -64,8 +64,8 @@
                             <ComboBox HorizontalAlignment="Left"
                                       Margin="0 8 0 0" 
                                       ItemsSource="{Binding Medals}"
-                                      SelectedItem="{Binding Filters.SelectedMedal, Mode=TwoWay}"
-                                      DisplayMemberPath="Title"/>
+                                      ItemTemplate="{StaticResource FilterMedalTextBlockTemplate}"
+                                      SelectedItem="{Binding Filters.SelectedMedal, Mode=TwoWay}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

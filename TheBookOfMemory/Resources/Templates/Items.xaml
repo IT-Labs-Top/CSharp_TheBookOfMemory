@@ -198,9 +198,16 @@
         </Button>
     </DataTemplate>
 
-    <DataTemplate x:Key="FilterTextBlockTemplate" DataType="{x:Type records:Rank}">
+    <DataTemplate x:Key="FilterRankTextBlockTemplate" DataType="{x:Type records:Rank}">
         <TextBlock Style="{StaticResource FilterComboboxTextBlockStyle}"
-                   Text="{Binding Title}"/>
+                   Text="{Binding Title}"
+                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}"/>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="FilterMedalTextBlockTemplate" DataType="{x:Type records:Medal}">
+        <TextBlock Style="{StaticResource FilterComboboxTextBlockStyle}"
+                   Text="{Binding Title}"
+                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleInformationTemplate" DataType="{x:Type records:PeopleById}">
