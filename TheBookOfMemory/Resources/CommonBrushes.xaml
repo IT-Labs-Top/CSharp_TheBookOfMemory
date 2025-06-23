@@ -11,6 +11,7 @@
     <Color x:Key="GrayColor">#2F2F2F</Color>
     <Color x:Key="LightGrayColor">#D9D9D9</Color>
     <Color x:Key="SoftGrayColor">#7C7C7C</Color>
+    <BitmapImage x:Key="PlugImage" UriSource="/Resources/Images/Plug.png"/>
 
     <SolidColorBrush x:Key="TextBrush" Color="{StaticResource BlackColor}"/>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource YellowColor}"/>

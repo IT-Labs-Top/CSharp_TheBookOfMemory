@@ -77,7 +77,9 @@
                         </Border.Style>
                         <Grid>
                            
-                            <components:AsyncImage Source="{Binding Image}"
+                            <components:AsyncImage Source="{Binding Image, 
+                                TargetNullValue={StaticResource PlugImage},
+                                FallbackValue={StaticResource PlugImage}}"
                                                    VerticalAlignment="Top"
                                                    Stretch="UniformToFill">
                                 <components:AsyncImage.Style>
@@ -133,7 +135,9 @@
                             CornerRadius="10"
                             Padding="20 20 20 20">
                         <StackPanel>
-                            <components:AsyncImage Source="{Binding Image}"
+                            <components:AsyncImage Source="{Binding Image, 
+                                FallbackValue={StaticResource PlugImage},
+                                TargetNullValue={StaticResource PlugImage}}"
                                                    VerticalAlignment="Top"
                                                    HorizontalAlignment="Center"
                                                    Stretch="UniformToFill"
@@ -182,7 +186,9 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <components:AsyncImage Source="{Binding Media}"
+                            <components:AsyncImage Source="{Binding Media,
+                                FallbackValue={StaticResource PlugImage},
+                                TargetNullValue={StaticResource PlugImage}}"
                                                    Margin="0 0 20 0"
                                                    Width="48"
                                                    Height="64"
@@ -227,7 +233,7 @@
                                    Text="Дата рождения" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthDate}" />
+                                   Text="{Binding BirthDate.Year, StringFormat={}{0} г.}"/>
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -257,7 +263,7 @@
                                    Text="Дата гибели" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathDate}" />
+                                   Text="{Binding DeathDate.Year, StringFormat={}{0} г.}" />
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -330,7 +336,7 @@
                                    Text="Воинское звание" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryUnit}" />
+                                   Text="{Binding Rank.Title}" />
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -341,7 +347,7 @@
                                    Text="Воинская часть" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryBranch}" />
+                                   Text="{Binding MilitaryUnit}" />
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -350,8 +356,16 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
                                    Text="Дата призыва" />
-                        <TextBlock Grid.Column="1" Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding InvocationDate}" />
+                        <TextBlock Grid.Column="1" Style="{StaticResource HeroInformationText}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1:MMMM} {2}"
+                                              ConverterCulture="ru-RU">
+                                    <Binding Path="InvocationDate.Day"/>
+                                    <Binding Path="InvocationDate"/>
+                                    <Binding Path="InvocationDate.Year"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -362,7 +376,7 @@
                                    Text="Последнее место службы" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BurialPlace}" />
+                                   Text="{Binding }" />
                     </Grid>
                 </StackPanel>
             </Border>

@@ -235,7 +235,7 @@
                                             <ScrollViewer Width="495"
                                                           SnapsToDevicePixels="True"
                                                           HorizontalAlignment="Center"
-                                                          Style="{StaticResource ContentSliderScrollViewer}">
+                                                          Style="{StaticResource FilterSliderScrollViewer}">
                                                 <StackPanel IsItemsHost="True"
                                                             Margin="2"
                                                             KeyboardNavigation.DirectionalNavigation="Contained" />

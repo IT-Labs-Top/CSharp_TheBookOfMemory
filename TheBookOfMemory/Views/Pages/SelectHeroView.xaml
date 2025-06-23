@@ -37,17 +37,20 @@
                                Text="Выбор героя"
                                Margin="20 0 0 0" />
                 </StackPanel>
-                <Grid HorizontalAlignment="Right">
+                <Grid HorizontalAlignment="Right"
+                            Height="56">
                     <components:RoundedButton Style="{StaticResource SearchHeroButtonStyle}"
                                               Background="White"
                                               CornerRadius="10"
                                               HorizontalAlignment="Left"
-                                              Margin="0 0 220 0"
+                                              Margin="0 0 300 0"
                                               Padding="15 12"
                                               Command="{Binding SwitchModeCommand}"
                                               CommandParameter="{x:Static enums:ModeType.SearchMode}" />
 
                     <components:RoundedButton HorizontalAlignment="Right"
+                                              Height="52"
+                                              Width="254"
                                               Style="{StaticResource FilterButtonStyle}"
                                               Background="{StaticResource TitleForegroundBrush}"
                                               Foreground="White"

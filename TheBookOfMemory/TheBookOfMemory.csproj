@@ -24,6 +24,7 @@
     <None Remove="Resources\Images\Culture.png" />
     <None Remove="Resources\Images\Filter.png" />
     <None Remove="Resources\Images\Logo.png" />
+    <None Remove="Resources\Images\Plug.png" />
     <None Remove="Resources\Images\Text.png" />
     <None Remove="Resources\Images\Win.png" />
     <None Remove="Resources\Styles\ScrollViewerStyle.xaml~RFeb7f6a.TMP" />
@@ -66,6 +67,9 @@
     <Resource Include="Resources\Images\Culture.png" />
     <Resource Include="Resources\Images\Filter.png" />
     <Resource Include="Resources\Images\Logo.png" />
+    <Resource Include="Resources\Images\Plug.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\Text.png" />
     <Resource Include="Resources\Images\Win.png" />
   </ItemGroup>

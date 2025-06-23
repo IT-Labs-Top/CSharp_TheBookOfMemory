@@ -62,11 +62,11 @@
                                               HorizontalAlignment="Left"
                                               VerticalAlignment="Center" />
                             <TextBlock
-                                TextAlignment="Justify"
+                                TextAlignment="Center"
                                 FontWeight="SemiBold"
-                                Text="ИСКАТЬ ГЕРОЯ"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Right"
+                                Text="ИСКАТЬ ГЕРОЯ"
                                 Margin="38 4 0 0"
                                 Visibility="{Binding DataContext.SelectedModeType,
                                 Converter={StaticResource EnumToVisibilityConverter},
@@ -157,30 +157,38 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components:RoundedButton">
-                    <Border Padding="40 12"
+                    <Border Padding="10 0"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                            <Grid VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
                                 <Image Source="../Images/Filter.png"
-                                       Width="32"
-                                       VerticalAlignment="Center" />
-                                <TextBlock Style="{StaticResource InterText}"
+                                       Width="30"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10 0 115 0"/>
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource InterText}"
                                            FontSize="18"
                                            Foreground="{TemplateBinding Foreground}"
                                            TextAlignment="Justify"
                                            FontWeight="SemiBold"
                                            Text="ФИЛЬТР"
+                                           HorizontalAlignment="Right"
                                            VerticalAlignment="Center"
-                                           Margin="16 2 0 0" />
-                            </StackPanel>
+                                           Margin="0 3 0 0"/>
+                            </Grid>
                             <Border Width="32" Height="32"
                                     CornerRadius="16"
-                                    Padding="11 5"
+                                    Padding="11  5"
                                     Background="White"
                                     VerticalAlignment="Top" HorizontalAlignment="Right"
-                                    Margin="0 -28 -48 0">
+                                    Margin="0 -28 -25 0">
                                 <Border.Style>
                                     <Style TargetType="Border">
                                         <Setter Property="Visibility" Value="Visible" />
