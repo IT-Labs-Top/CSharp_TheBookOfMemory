@@ -25,7 +25,20 @@
                         Height="565"
                         Margin="0 0 0 32">
                         <components:AsyncImage Source="{Binding Media.Media}"
-                                           Stretch="UniformToFill" />
+                                           Stretch="UniformToFill" >
+                            <components:AsyncImage.OpacityMask>
+                                <VisualBrush>
+                                    <VisualBrush.Visual>
+                                        <Rectangle
+                                            Width="1004"
+                                            Height="565"
+                                            RadiusX="10"
+                                            RadiusY="10"
+                                            Fill="White" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </components:AsyncImage.OpacityMask>
+                        </components:AsyncImage>
                     </Border>
                     <Border Background="White"
                         CornerRadius="10"

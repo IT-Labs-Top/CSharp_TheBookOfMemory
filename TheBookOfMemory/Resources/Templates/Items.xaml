@@ -376,7 +376,7 @@
                                    Text="Последнее место службы" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding }" />
+                                   Text="{Binding LastPlaceService}" />
                     </Grid>
                 </StackPanel>
             </Border>

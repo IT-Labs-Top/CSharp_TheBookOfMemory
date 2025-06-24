@@ -44,8 +44,7 @@ public partial class PersonalInformationViewModel(
         {
             Image = await client.LoadImageAndGetPath(logger, peopleById.Image),
             PeopleMedia = (await Task.WhenAll(peopleById.PeopleMedia.Select(async media =>
-                media with { Media = await client.LoadImageAndGetPath(logger, media.Media) }))).ToList(),
-            BirthDate = new DateTime(peopleById.BirthDate.Year)
+                media with { Media = await client.LoadImageAndGetPath(logger, media.Media) }))).ToList()
         };
 
         return updatedPeople;

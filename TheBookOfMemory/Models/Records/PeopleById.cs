@@ -19,6 +19,7 @@ public record PeopleById(
     DateTime? EndDateOfService,
     string DeathInfo,
     string BurialPlace,
+    string LastPlaceService,
     List<PeopleMedia> PeopleMedia,
     List<Medal> Medals
    );

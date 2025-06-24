@@ -35,7 +35,7 @@
 
     <Style TargetType="components:RoundedButton" x:Key="SearchHeroButtonStyle">
         <Setter Property="MinWidth" Value="254" />
-        <Setter Property="MaxWidth" Value="1100"/>
+        <Setter Property="MaxWidth" Value="1100" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components:RoundedButton">
@@ -162,26 +162,24 @@
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid VerticalAlignment="Center"
-                                        HorizontalAlignment="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                  HorizontalAlignment="Center"
+                                  Width="{TemplateBinding Width}"
+                                  Height="{TemplateBinding Height}">
                                 <Image Source="../Images/Filter.png"
                                        Width="30"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
-                                       Margin="10 0 115 0"/>
-                                <TextBlock Grid.Column="1"
-                                           Style="{StaticResource InterText}"
-                                           FontSize="18"
+                                       Margin="20 0 0 0">
+                                </Image>
+                                <TextBlock Style="{StaticResource BaseButtonText}"
                                            Foreground="{TemplateBinding Foreground}"
                                            TextAlignment="Justify"
-                                           FontWeight="SemiBold"
                                            Text="ФИЛЬТР"
+                                           TextWrapping="NoWrap"
                                            HorizontalAlignment="Right"
                                            VerticalAlignment="Center"
-                                           Margin="0 3 0 0"/>
+                                           Margin="0 3 15 0" >
+                                </TextBlock>
                             </Grid>
                             <Border Width="32" Height="32"
                                     CornerRadius="16"
@@ -206,7 +204,9 @@
                                     Foreground="{StaticResource TitleForegroundBrush}"
                                     FontSize="18"
                                     FontWeight="SemiBold"
-                                    FontFamily="{StaticResource Inter}" />
+                                    FontFamily="{StaticResource Inter}">
+                                   
+                                </TextBlock>
                             </Border>
                         </Grid>
                     </Border>
