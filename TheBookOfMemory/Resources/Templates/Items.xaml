@@ -111,12 +111,12 @@
                             </components:AsyncImage>
 
                             <StackPanel VerticalAlignment="Bottom">
-                                <TextBlock Text="{Binding Patronymic}"
+                                <TextBlock Text="{Binding Surname}"
                                            Style="{StaticResource HeroText}" />
                                 <TextBlock Text="{Binding Name}"
                                            Style="{StaticResource HeroText}"
                                            Margin="0 5" />
-                                <TextBlock Text="{Binding Surname}"
+                                <TextBlock Text="{Binding Patronymic}"
                                            Style="{StaticResource HeroText}" />
                             </StackPanel>
                         </Grid>
@@ -160,8 +160,8 @@
                             <TextBlock Style="{StaticResource HeroText}"
                                        FontSize="28"
                                        VerticalAlignment="Bottom">
-                                <Run Text="{Binding Name}" />
                                 <Run Text="{Binding Surname}" />
+                                <Run Text="{Binding Name}" />
                                 <Run Text="{Binding Patronymic}" />
                             </TextBlock>
                         </StackPanel>
