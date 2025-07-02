@@ -68,22 +68,9 @@
             </StackPanel>
         </StackPanel>
 
-        <Image Source="/Resources/Images/Culture.png"
-               Width="253"
-               Height="104"
-               VerticalAlignment="Bottom"
-               HorizontalAlignment="Left"
-               Margin="40"/>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
                     Margin="40">
-            <Image Source="/Resources/Images/Cul.png"
-               Width="113"
-               Height="171"/>
-            <Image Source="/Resources/Images/Win.png"
-                   Width="113"
-                   Height="171"
-                   Margin="20 0 0 0"/>
         </StackPanel>
     </Grid>
 </UserControl>
