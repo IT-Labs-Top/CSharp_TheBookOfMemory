@@ -13,19 +13,19 @@
     <popupContainers:OpacityPopupContainer>
         <StackPanel VerticalAlignment="Center">
             <Border Width="1044"
-                Height="849"
-                CornerRadius="30"
-                Padding="20">
+                    Height="849"
+                    CornerRadius="30"
+                    Padding="20">
                 <Border.Background>
                     <SolidColorBrush Color="White" Opacity="0.5" />
                 </Border.Background>
                 <StackPanel Orientation="Vertical">
                     <Border CornerRadius="10"
-                        Width="1004"
-                        Height="565"
-                        Margin="0 0 0 32">
+                            Width="1004"
+                            Height="565"
+                            Margin="0 0 0 32">
                         <components:AsyncImage Source="{Binding Media.Media}"
-                                           Stretch="UniformToFill" >
+                                               Stretch="UniformToFill">
                             <components:AsyncImage.OpacityMask>
                                 <VisualBrush>
                                     <VisualBrush.Visual>
@@ -41,17 +41,23 @@
                         </components:AsyncImage>
                     </Border>
                     <Border Background="White"
-                        CornerRadius="10"
-                        Padding="20"
-                        Width="1004"
-                        Height="212">
-                        <StackPanel>
-                            <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="{Binding Media.Title}"
-                                   Margin="0 0 0 12" />
-                            <TextBlock Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding Media.Description}" />
-                        </StackPanel>
+                            CornerRadius="10"
+                            Padding="20"
+                            Width="1004"
+                            Height="212">
+                        <ScrollViewer
+                            Style="{StaticResource InfoSliderScrollViewer}"
+                            VerticalScrollBarVisibility="Auto"
+                            MaxHeight="180">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource HeroInformationTitleText}"
+                                           Text="{Binding Media.Title}"
+                                           Margin="0 0 0 12" />
+                                <TextBlock Style="{StaticResource HeroInformationText}"
+                                           HorizontalAlignment="Left"
+                                           Text="{Binding Media.Description}" />
+                            </StackPanel>
+                        </ScrollViewer>
                     </Border>
                 </StackPanel>
             </Border>

@@ -64,13 +64,17 @@
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="HeroInformationTitleText">
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="MaxWidth" Value="1100"/>
         <Setter Property="FontSize" Value="28"/>
+        <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="Foreground" Value="{StaticResource TitleForegroundBrush}"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}" x:Key="HeroInformationText">
         <Setter Property="FontSize" Value="22"/>
+        <Setter Property="MaxWidth" Value="822"/>
         <Setter Property="Foreground" Value="{StaticResource DescriptionForegroundBrush}"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
