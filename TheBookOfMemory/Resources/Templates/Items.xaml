@@ -234,7 +234,8 @@
                                    Text="Дата рождения" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthDate.Year, StringFormat={}{0} г.}"/>
+                                   Text="{Binding BirthDate, StringFormat={}{0:d MMMM yyyy\г.},
+                            ConverterCulture=ru-Ru}" />
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -261,10 +262,11 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата гибели" />
+                                   Text="Дата смерти" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathDate.Year, StringFormat={}{0} г.}" />
+                                   Text="{Binding DeathDate, StringFormat={}{0:d MMMM yyyy\г.} ,
+                            ConverterCulture=ru-Ru}" />
                     </Grid>
                     <Grid Margin="0 8">
                         <Grid.ColumnDefinitions>
@@ -272,7 +274,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Причина гибели" />
+                                   Text="Причина смерти" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
                                    Text="{Binding DeathReason}" />
@@ -294,7 +296,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Обстоятельства гибели" />
+                                   Text="Обстоятельства смерти" />
                         <TextBlock Grid.Column="1"
                                    Style="{StaticResource HeroInformationText}"
                                    Text="{Binding DeathInfo}" />
@@ -356,14 +358,15 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата призыва" />
+                                   Text="Дата призыва/окончания службы" />
                         <TextBlock Grid.Column="1" Style="{StaticResource HeroInformationText}">
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} {1:MMMM} {2}"
-                                              ConverterCulture="ru-RU">
-                                    <Binding Path="InvocationDate.Day"/>
-                                    <Binding Path="InvocationDate"/>
-                                    <Binding Path="InvocationDate.Year"/>
+                                <MultiBinding StringFormat="{}{0:dd.MM.yyyy\г.}{1:/ dd.MM.yyyy\г.}">
+                                    <Binding Path="InvocationDate"
+                                             TargetNullValue="Неизвестно"/>
+                                    <Binding Path="EndDateOfService"
+                                             TargetNullValue=" / неизвестно"/>
+                                    
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
