@@ -1,49 +1,54 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
-                    xmlns:records="clr-namespace:TheBookOfMemory.Models.Records">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
+    xmlns:records="clr-namespace:TheBookOfMemory.Models.Records">
     <DataTemplate x:Key="EventItemsTemplate" DataType="{x:Type records:Event}">
-        <Button Margin="10"
-                Command="{Binding DataContext.NavigateToSelectPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                CommandParameter="{Binding Type}">
+        <Button
+            Margin="10"
+            Command="{Binding DataContext.NavigateToSelectPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            CommandParameter="{Binding Type}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="White"
-                            CornerRadius="10"
-                            Padding="24 32"
-                            Height="304.5"
-                            MinWidth="586"
-                            MaxWidth="890">
+                    <Border
+                        Height="304.5"
+                        MinWidth="586"
+                        MaxWidth="890"
+                        Padding="24,32"
+                        Background="White"
+                        CornerRadius="10">
                         <Grid MaxWidth="890">
-                            <TextBlock Text="{Binding Title}"
-                                       MaxWidth="484"
-                                       Style="{StaticResource InterText}"
-                                       FontSize="40"
-                                       FontWeight="Bold"
-                                       VerticalAlignment="Top"
-                                       HorizontalAlignment="Left" />
-                            <TextBlock Text="{Binding Description}"
-                                       MaxWidth="540"
-                                       FontWeight="Normal"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Left">
+                            <TextBlock
+                                MaxWidth="484"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontSize="40"
+                                FontWeight="Bold"
+                                Style="{StaticResource InterText}"
+                                Text="{Binding Title}" />
+                            <TextBlock
+                                MaxWidth="540"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                FontWeight="Normal"
+                                Text="{Binding Description}">
                                 <TextBlock.Style>
-                                    <Style TargetType="TextBlock" BasedOn="{StaticResource InterText}">
+                                    <Style BasedOn="{StaticResource InterText}" TargetType="TextBlock">
                                         <Setter Property="FontSize" Value="18" />
                                         <Style.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                Value="True">
+                                            <DataTrigger Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
                                                 <Setter Property="FontSize" Value="24" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <Image Source="../Images/ArrowUp.png"
-                                   Width="30" Height="30"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Top" />
+                            <Image
+                                Width="30"
+                                Height="30"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Source="../Images/ArrowUp.png" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -52,23 +57,22 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleTemplate" DataType="{x:Type records:People}">
-        <Button Margin="5"
-                Command="{Binding DataContext.GoToPersonalInformationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                CommandParameter="{Binding}">
+        <Button
+            Margin="5"
+            Command="{Binding DataContext.GoToPersonalInformationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            CommandParameter="{Binding}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border
-                        CornerRadius="10"
                         Padding="16"
-                        Background="White">
+                        Background="White"
+                        CornerRadius="10">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Width" Value="287" />
                                 <Setter Property="Height" Value="467" />
                                 <Style.Triggers>
-                                    <DataTrigger
-                                        Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        Value="True">
+                                    <DataTrigger Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
                                         <Setter Property="Width" Value="429" />
                                         <Setter Property="Height" Value="698" />
                                     </DataTrigger>
@@ -76,20 +80,17 @@
                             </Style>
                         </Border.Style>
                         <Grid>
-                           
-                            <components:AsyncImage Source="{Binding Image, 
-                                TargetNullValue={StaticResource PlugImage},
-                                FallbackValue={StaticResource PlugImage}}"
-                                                   VerticalAlignment="Top"
-                                                   Stretch="UniformToFill">
+
+                            <components:AsyncImage
+                                VerticalAlignment="Top"
+                                Source="{Binding Image, TargetNullValue={StaticResource PlugImage}, FallbackValue={StaticResource PlugImage}}"
+                                Stretch="UniformToFill">
                                 <components:AsyncImage.Style>
                                     <Style TargetType="components:AsyncImage">
                                         <Setter Property="Width" Value="256" />
                                         <Setter Property="Height" Value="341" />
                                         <Style.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode,RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                Value="True">
+                                            <DataTrigger Binding="{Binding DataContext.Settings.IsVisuallyImpairedMode, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="True">
                                                 <Setter Property="Width" Value="383" />
                                                 <Setter Property="Height" Value="510" />
                                             </DataTrigger>
@@ -102,22 +103,21 @@
                                             <Rectangle
                                                 Width="256"
                                                 Height="341"
+                                                Fill="White"
                                                 RadiusX="6"
-                                                RadiusY="6"
-                                                Fill="White" />
+                                                RadiusY="6" />
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </components:AsyncImage.OpacityMask>
                             </components:AsyncImage>
 
                             <StackPanel VerticalAlignment="Bottom">
-                                <TextBlock Text="{Binding Surname}"
-                                           Style="{StaticResource HeroText}" />
-                                <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource HeroText}"
-                                           Margin="0 5" />
-                                <TextBlock Text="{Binding Patronymic}"
-                                           Style="{StaticResource HeroText}" />
+                                <TextBlock Style="{StaticResource HeroText}" Text="{Binding Surname}" />
+                                <TextBlock
+                                    Margin="0,5"
+                                    Style="{StaticResource HeroText}"
+                                    Text="{Binding Name}" />
+                                <TextBlock Style="{StaticResource HeroText}" Text="{Binding Patronymic}" />
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -127,39 +127,39 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleByIdTemplate" DataType="{x:Type records:PeopleById}">
-        <Button Width="339"
-                Height="525">
+        <Button Width="339" Height="525">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="White"
-                            CornerRadius="10"
-                            Padding="20 20 20 20">
+                    <Border
+                        Padding="20,20,20,20"
+                        Background="White"
+                        CornerRadius="10">
                         <StackPanel>
-                            <components:AsyncImage Source="{Binding Image, 
-                                FallbackValue={StaticResource PlugImage},
-                                TargetNullValue={StaticResource PlugImage}}"
-                                                   VerticalAlignment="Top"
-                                                   HorizontalAlignment="Center"
-                                                   Stretch="UniformToFill"
-                                                   Width="299"
-                                                   Height="399"
-                                                   Margin="0 0 0 20">
+                            <components:AsyncImage
+                                Width="299"
+                                Height="399"
+                                Margin="0,0,0,20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Source="{Binding Image, FallbackValue={StaticResource PlugImage}, TargetNullValue={StaticResource PlugImage}}"
+                                Stretch="UniformToFill">
                                 <components:AsyncImage.OpacityMask>
                                     <VisualBrush>
                                         <VisualBrush.Visual>
                                             <Rectangle
                                                 Width="299"
                                                 Height="399"
+                                                Fill="White"
                                                 RadiusX="10"
-                                                RadiusY="10"
-                                                Fill="White" />
+                                                RadiusY="10" />
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </components:AsyncImage.OpacityMask>
                             </components:AsyncImage>
-                            <TextBlock Style="{StaticResource HeroText}"
-                                       FontSize="28"
-                                       VerticalAlignment="Bottom">
+                            <TextBlock
+                                VerticalAlignment="Bottom"
+                                FontSize="28"
+                                Style="{StaticResource HeroText}">
                                 <Run Text="{Binding Surname}" />
                                 <Run Text="{Binding Name}" />
                                 <Run Text="{Binding Patronymic}" />
@@ -172,32 +172,34 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleHistoryCardTemplate" DataType="{x:Type records:PeopleMedia}">
-        <Button Height="104"
-                MinWidth="1373"
-                Margin="0 5"
-                Command="{Binding DataContext.ShowPopupCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                CommandParameter="{Binding}">
+        <Button
+            Height="104"
+            MinWidth="1373"
+            Margin="0,5"
+            Command="{Binding DataContext.ShowPopupCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            CommandParameter="{Binding}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="White"
-                            CornerRadius="10"
-                            Padding="20">
+                    <Border
+                        Padding="20"
+                        Background="White"
+                        CornerRadius="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <components:AsyncImage Source="{Binding Media,
-                                FallbackValue={StaticResource PlugImage},
-                                TargetNullValue={StaticResource PlugImage}}"
-                                                   Margin="0 0 20 0"
-                                                   Width="48"
-                                                   Height="64"
-                                                   Stretch="Fill"/>
-                            <TextBlock Grid.Column="1"
-                                       Style="{StaticResource HeroInformationTitleText}"
-                                       Text="{Binding Title}"
-                                       VerticalAlignment="Center"/>
+                            <components:AsyncImage
+                                Width="48"
+                                Height="64"
+                                Margin="0,0,20,0"
+                                Source="{Binding Media, FallbackValue={StaticResource PlugImage}, TargetNullValue={StaticResource PlugImage}}"
+                                Stretch="Fill" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource HeroInformationTitleText}"
+                                Text="{Binding Title}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -206,181 +208,181 @@
     </DataTemplate>
 
     <DataTemplate x:Key="FilterRankTextBlockTemplate" DataType="{x:Type records:Rank}">
-        <TextBlock Style="{StaticResource FilterComboboxTextBlockStyle}"
-                   Text="{Binding Title}"
-                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}"/>
+        <TextBlock
+            Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}"
+            Style="{StaticResource FilterComboboxTextBlockStyle}"
+            Text="{Binding Title}" />
     </DataTemplate>
-    
+
     <DataTemplate x:Key="FilterMedalTextBlockTemplate" DataType="{x:Type records:Medal}">
-        <TextBlock Style="{StaticResource FilterComboboxTextBlockStyle}"
-                   Text="{Binding Title}"
-                   Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}"/>
+        <TextBlock
+            Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBoxItem}}"
+            Style="{StaticResource FilterComboboxTextBlockStyle}"
+            Text="{Binding Title}" />
     </DataTemplate>
 
     <DataTemplate x:Key="PeopleInformationTemplate" DataType="{x:Type records:PeopleById}">
         <StackPanel Orientation="Vertical">
-            <Border Background="White"
-                    Padding="20"
-                    CornerRadius="10"
-                    Margin="0 0 0 10"
-                    MinHeight="144">
+            <Border
+                MinHeight="144"
+                Margin="0,0,0,10"
+                Padding="20"
+                Background="White"
+                CornerRadius="10">
                 <StackPanel Orientation="Vertical">
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата рождения" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthDate, StringFormat={}{0:d MMMM yyyy\г.},
-                            ConverterCulture=ru-Ru}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Дата рождения" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding BirthDate, TargetNullValue='Неизвестно', StringFormat={}{0:d MMMM yyyy\г.}, ConverterCulture=ru-Ru}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место рождения" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BirthPlace}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Место рождения" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding BirthPlace, TargetNullValue='Неизвестно'}" />
                     </Grid>
                 </StackPanel>
             </Border>
-            <Border Background="White"
-                    Padding="20"
-                    CornerRadius="10"
-                    Margin="0 0 0 10"
-                    MinHeight="300">
+            <Border
+                MinHeight="300"
+                Margin="0,0,0,10"
+                Padding="20"
+                Background="White"
+                CornerRadius="10">
                 <StackPanel Orientation="Vertical">
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата смерти" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathDate, StringFormat={}{0:d MMMM yyyy\г.} ,
-                            ConverterCulture=ru-Ru}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Дата смерти" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding DeathDate, TargetNullValue='Неизвестно', StringFormat={}{0:d MMMM yyyy\г.}, ConverterCulture=ru-Ru}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Причина смерти" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathReason}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Причина смерти" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding DeathReason, TargetNullValue='Неизвестно'}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место смерти" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathPlace}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Место смерти" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding DeathPlace, TargetNullValue='Неизвестно'}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Обстоятельства смерти" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding DeathInfo}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Обстоятельства смерти" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding DeathInfo, TargetNullValue='Неизвестно'}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Место захоронения" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding BurialPlace}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Место захоронения" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding BurialPlace, TargetNullValue='Неизвестно'}" />
                     </Grid>
                 </StackPanel>
             </Border>
-            <Border Background="White"
-                    Padding="20"
-                    CornerRadius="10"
-                    MinHeight="290">
+            <Border
+                MinHeight="290"
+                Padding="20"
+                Background="White"
+                CornerRadius="10">
                 <StackPanel Orientation="Vertical">
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Род войск" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryBranch}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Род войск" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding MilitaryBranch, TargetNullValue='Неизвестно'}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Воинское звание" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding Rank.Title}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Воинское звание" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding Rank.Title, TargetNullValue='Неизвестно'}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Воинская часть" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding MilitaryUnit}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Воинская часть" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding MilitaryUnit, TargetNullValue='Неизвестно'}" />
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Дата призыва/окончания службы" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Дата призыва/окончания службы" />
                         <TextBlock Grid.Column="1" Style="{StaticResource HeroInformationText}">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0:dd.MM.yyyy\г.}{1:/ dd.MM.yyyy\г.}">
-                                    <Binding Path="InvocationDate"
-                                             TargetNullValue="Неизвестно"/>
-                                    <Binding Path="EndDateOfService"
-                                             TargetNullValue=" / неизвестно"/>
-                                    
+                                    <Binding Path="InvocationDate" TargetNullValue="Неизвестно" />
+                                    <Binding Path="EndDateOfService" TargetNullValue=" / неизвестно" />
+
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                     </Grid>
-                    <Grid Margin="0 8">
+                    <Grid Margin="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}"
-                                   Text="Последнее место службы" />
-                        <TextBlock Grid.Column="1"
-                                   Style="{StaticResource HeroInformationText}"
-                                   Text="{Binding LastPlaceService}" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Последнее место службы" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Style="{StaticResource HeroInformationText}"
+                            Text="{Binding LastPlaceService, TargetNullValue='Неизвестно'}" />
                     </Grid>
                 </StackPanel>
             </Border>
