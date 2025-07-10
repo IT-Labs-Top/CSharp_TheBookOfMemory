@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:components="clr-namespace:MainComponents.Components;assembly=MainComponents"
-    xmlns:records="clr-namespace:TheBookOfMemory.Models.Records">
+    xmlns:records="clr-namespace:TheBookOfMemory.Models.Records"
+    xmlns:converter="clr-namespace:TheBookOfMemory.Converters">
     <DataTemplate x:Key="EventItemsTemplate" DataType="{x:Type records:Event}">
         <Button
             Margin="10"
@@ -383,6 +384,47 @@
                             Grid.Column="1"
                             Style="{StaticResource HeroInformationText}"
                             Text="{Binding LastPlaceService, TargetNullValue='Неизвестно'}" />
+                    </Grid>
+                    <Grid Margin="0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Награды" />
+                       
+                        <ItemsControl ItemsSource="{Binding Medals}"
+                                      Grid.Column="1">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource HeroInformationText}"
+                                               Text="{Binding Title}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <TextBlock Text="Неизвестно"
+                                   Grid.Column="1">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource HeroInformationText}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Medals.Count}" Value="0">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Medals}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Grid>
                 </StackPanel>
             </Border>
