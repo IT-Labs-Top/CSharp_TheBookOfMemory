@@ -267,7 +267,7 @@
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Дата смерти" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Дата гибели" />
                         <TextBlock
                             Grid.Column="1"
                             Style="{StaticResource HeroInformationText}"
@@ -278,7 +278,7 @@
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Причина смерти" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Причина гибели" />
                         <TextBlock
                             Grid.Column="1"
                             Style="{StaticResource HeroInformationText}"
@@ -289,7 +289,7 @@
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Место смерти" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Место гибели" />
                         <TextBlock
                             Grid.Column="1"
                             Style="{StaticResource HeroInformationText}"
@@ -300,7 +300,7 @@
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Обстоятельства смерти" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Обстоятельства гибели" />
                         <TextBlock
                             Grid.Column="1"
                             Style="{StaticResource HeroInformationText}"
@@ -341,7 +341,7 @@
                             <ColumnDefinition Width="511" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Воинское звание" />
+                        <TextBlock Style="{StaticResource HeroInformationTitleText}" Text="Воинское звание / Должность" />
                         <TextBlock
                             Grid.Column="1"
                             Style="{StaticResource HeroInformationText}"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -89,8 +90,30 @@ public partial class SelectHeroPageViewModel(
     {
         messenger.RegisterAll(this);
         Filter.Type = type;
+        await GetSliderValue();
         await LoadRankAndMedals();
         await UpdatePeoplesAsync(type, null, null, null, null);
+    }
+
+    private async Task GetSliderValue()
+    {
+        try
+        {
+            var value = await client.GetFilters();
+
+            if (value is null)
+            {
+                logger.Error("Ошибка получение значений на слайдер: null");
+                return;
+            }
+
+            sliderValue.Maximum = value.MaxYear;
+            sliderValue.Minimum = value.MinYear;
+        }
+        catch (Exception e)
+        {
+            logger.Error("Ошибка получение значений на слайдер: " + e.Message);
+        }
     }
 
     [RelayCommand]

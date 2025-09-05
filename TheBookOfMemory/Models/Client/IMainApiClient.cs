@@ -1,5 +1,6 @@
 ﻿using Refit;
 using System.Net.Http;
+using TheBookOfMemory.Models.Entities;
 using TheBookOfMemory.Models.Records;
 
 namespace TheBookOfMemory.Models.Client;
@@ -17,6 +18,9 @@ public interface IMainApiClient
 
     [Get("/api/rank")]
     Task<List<Rank>> GetRank();
+
+    [Get("/api/filters")]
+    Task<SliderFilter> GetFilters();
 
     [Get("/{**imageId}")]
     [QueryUriFormat(UriFormat.Unescaped)]
